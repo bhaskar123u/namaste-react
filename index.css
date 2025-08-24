@@ -1,0 +1,10 @@
+#heading {
+    color: red;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 50px auto;
+    background-color: lightgreen;
+    display: block;
+}
