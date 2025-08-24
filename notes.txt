@@ -1,7 +1,0 @@
-1. React element - Nothing but simple JS Object
-
-2. React.createElement('element', {k:'v'(properties)}, ['childrens']); => Object and it becomes HTML which browser understands
-
-3. React.render replaces everything in the tag it is added, but html tree is made line by line, meaning all the element will be parsed line by line and when it sees .render( ), then it starts working -> order of files matter a lot
-
-4. React is a library, it can work inside a simple tag also. We don't need to create a full fledged app, react can be injected in a small portion of the app also
