@@ -1,14 +1,7 @@
-// creating element
-/*
-    <div id="parent">
-        <div id="child">
-            <h1>Hello World</h1>
-            <h1>Hello World Sibling</h1>
-        </div>
-    </div>
+import React from "react";
+import ReactDOM from "react-dom/client"
 
-*/
-
+// creating elements
 const parent = React.createElement(
     "div",
     { id: "parent" },
@@ -18,10 +11,8 @@ const parent = React.createElement(
     ])
 );
 
-console.log(parent);
-
 // creating root using ReactDOM
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// rendering
+// rendering parent in div tag with id - 'root'
 root.render(parent);
