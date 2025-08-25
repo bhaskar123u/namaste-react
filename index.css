@@ -1,10 +1,11 @@
-#heading {
-    color: red;
-    border: 1px solid black;
+#heading, #title {
+    color: green;
+    border: 2px solid black;
     border-radius: 10px;
-    width: fit-content;
+    width: 50%;
+    text-align: center;
     padding: 10px 20px;
     margin: 50px auto;
-    background-color: lightgreen;
+    background-color: peachpuff;
     display: block;
 }
