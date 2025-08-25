@@ -35,22 +35,22 @@ Executing a package - npx ...
 
 17. Why react was built? - Markup in HTML, logic in JS, style in CSS. React tries to merge these things. All in same file.
 
-18. HTML heading - <h1 id='heading'>H1 in HTML</h1>, React heading - React.createElement("h1",{id:'heading'},'H1 in React'), JSX heading - const heading = <h1 id='heading'>H1 in JSX</h1>
+18. HTML heading - `<h1 id='heading'>H1 in HTML</h1>`, React heading - React.createElement("h1",{id:'heading'},'H1 in React'), JSX heading - const heading = `<h1 id='heading'>H1 in JSX</h1>`
 
 19. JSX != HTML inside javascript, it is HTML like syntax
 
-20. Brower's JS Engine doesn't understand JSX, it understands only ECMA script. Whenever we write JSX, Parcel(Babel) converts it into valid JS. The code is transpiled before the code reaches JS Engine. How the conversion happens : check here - https://babeljs.io/ e.g., const heading = <h1>sample h1 tag</h1> -> const heading = /*#__PURE__*/React.createElement("h1", null, "sample h1 tag")
+20. Brower's JS Engine doesn't understand JSX, it understands only ECMA script. Whenever we write JSX, Parcel(Babel) converts it into valid JS. The code is transpiled before the code reaches JS Engine. How the conversion happens : check here - https://babeljs.io/ e.g., const heading = `<h1>sample h1 tag</h1>` -> const heading = /*#__PURE__*/React.createElement("h1", null, "sample h1 tag")
 
 21. Babel is a transpiler, some browsers doesn't understand newer code, babel converts it into older format. Babel is a code converter and not only JSX, it handles a lot of things.
 
-22. Use camelcase when giving properties in JSX tags e.g., in html <h1 class='heading'>H1 tag</h1> but in JSX we write
-const heading = <h1 className='heading'>H1 tag</h1>.
+22. Use camelcase when giving properties in JSX tags e.g., in html `<h1 class='heading'>H1 tag</h1>` but in JSX we write
+const heading = `<h1 className='heading'>H1 tag</h1>`.
 
 23. Mutliple line JSX - wrap in ( ) for babel to understand the start and end point.
-const heading = (<h1 className='heading'>H1 tag</h1>) not needed in single line but is needed in multiple lines JSX
+const heading = (`<h1 className='heading'>H1 tag</h1>`) not needed in single line but is needed in multiple lines JSX
 
-24. React Component - Class Based, Function Based. Start with a CAPITAL LETTER. Functional Component(FC) is simply a JS fn which returns a JSX/React Element e.g., const FunctionalComponent = () => { return <h1>H1 tag</h1>; } OR const FunctionalComponent = function(){ return (<h1>H1 tag</h1>);};. We can also avoid 'return' keyword in arrow function syntax.
+24. React Component - Class Based, Function Based. Start with a CAPITAL LETTER. Functional Component(FC) is simply a JS fn which returns a JSX/React Element e.g., const FunctionalComponent = () => { return `<h1>H1 tag</h1>`; } OR const FunctionalComponent = function(){ return (`<h1>H1 tag</h1>`);};. We can also avoid 'return' keyword in arrow function syntax.
 
 25. When we call a FC from another FC, it is called component composition.
 
-26. In JSX whatever we write in {} is executed. We can execute JS code inside in it. JSX sanitise the data before using e.g., <h1>{console.log(1+2);}</h1> and prevents XSS attacks. We can add a react element in {} also.
+26. In JSX whatever we write in {} is executed. We can execute JS code inside in it. JSX sanitise the data before using e.g., `<h1>{console.log(1+2);}</h1>` and prevents XSS attacks. We can add a react element in {} also. 
