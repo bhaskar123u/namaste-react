@@ -39,7 +39,7 @@ Executing a package - npx ...
 
 19. JSX != HTML inside javascript, it is HTML like syntax
 
-20. Brower's JS Engine doesn't understand JSX, it understands only ECMA script. Whenever we write JSX, Parcel(Babel) converts it into valid JS. The code is transpiled before the code reaches JS Engine. How the conversion happens : check here - https://babeljs.io/ e.g., const heading = `<h1>sample h1 tag</h1>` -> const heading = /*#__PURE__*/React.createElement("h1", null, "sample h1 tag")
+20. Brower's JS Engine doesn't understand JSX, it understands only ECMA script. Whenever we write JSX, Parcel(Babel) converts it into valid JS. The code is transpiled before the code reaches JS Engine. How the conversion happens : check here - https://babeljs.io/ e.g., const heading = `<h1>sample h1 tag</h1>` -> const heading = `/*#__PURE__*/React.createElement("h1", null, "sample h1 tag")`
 
 21. Babel is a transpiler, some browsers doesn't understand newer code, babel converts it into older format. Babel is a code converter and not only JSX, it handles a lot of things.
 
@@ -53,4 +53,12 @@ const heading = (`<h1 className='heading'>H1 tag</h1>`) not needed in single lin
 
 25. When we call a FC from another FC, it is called component composition.
 
-26. In JSX whatever we write in {} is executed. We can execute JS code inside in it. JSX sanitise the data before using e.g., `<h1>{console.log(1+2);}</h1>` and prevents XSS attacks. We can add a react element in {} also. 
+26. In JSX whatever we write in {} is executed. We can execute JS code inside in it. JSX sanitise the data before using e.g., `<h1>{console.log(1+2);}</h1>` and prevents XSS attacks. We can add a react element in {} also.
+
+27. If we want to give style in JSX, we have to give it like a JS Object for e.g., const styleCard = { color: '#f0f0f0' } and we can use it like return (`<div className='header' style={styleCard}></div>`). The same thing can be also done in this way `<div className='header' style={{ color: '#f0f0f0' }}></div>`.
+
+28. In react we have props - something which we can pass to a component. Used to dynamically pass value to a component. Passing props to a component is same as passing an argument to a function. All props are passed as an object to the component.
+
+29. Config Driven UI - Different UI for different user. It is data-driven.
+
+30. When we loop over data and pass it in any component, make sure to have a key. Avoid index as keys if possible. Keys are very important as it tracks changes in DOM tree. If we don't have unique id for each data, we can use indexes as id. Not using keys <<< index as keys <<< unique key.
