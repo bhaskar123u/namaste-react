@@ -61,4 +61,11 @@ const heading = (`<h1 className='heading'>H1 tag</h1>`) not needed in single lin
 
 29. Config Driven UI - Different UI for different user. It is data-driven.
 
-30. When we loop over data and pass it in any component, make sure to have a key. Avoid index as keys if possible. Keys are very important as it tracks changes in DOM tree. If we don't have unique id for each data, we can use indexes as id. Not using keys <<< index as keys <<< unique key.
+30. When we loop over data and pass it in any component, make sure to have a key. Avoid index as keys if possible. Keys are very important as it tracks changes in DOM tree. If we don't have unique id for each data, we can use indexes as id.
+Not using keys <<< index as keys <<< unique key.
+
+31. We have 2 types of export/imports. 1. Default 2. Named.
+1 -> export default Header; then import Header from "path";
+2-> export const data; then import {data} from "path"; (when we have to multiple things from same file)
+
+32. 
