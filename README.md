@@ -1,4 +1,4 @@
-This codebase is for Namaste React course for notes and code.
+This codebase is for Namaste React course for notes and code (https://bhaskar123u.github.io/namaste-react/)
 
 1. React element - Nothing but simple JS Object.
 
