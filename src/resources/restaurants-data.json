@@ -1,371 +1,407 @@
 {
   "restaurants": [
     {
-      "info": {
-        "id": "657421",
-        "name": "McDonald's",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/3/01266ff5-3e8c-4c1b-aa35-8f2ddbd2055a_657421.jpg",
-        "locality": "Doddanekundi",
-        "areaName": "Marathahalli",
-        "costForTwo": "₹400 for two",
-        "cuisines": ["Burgers", "Beverages", "Cafe", "Desserts"],
-        "avgRating": 4.3,
-        "avgRatingString": "4.3",
-        "totalRatingsString": "5.2K+",
-        "sla": { "deliveryTime": 20 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "657421",
+      "name": "McDonald's",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/3/01266ff5-3e8c-4c1b-aa35-8f2ddbd2055a_657421.jpg",
+      "locality": "Doddanekundi",
+      "areaName": "Marathahalli",
+      "costForTwo": "₹400 for two",
+      "cuisines": [
+        "Burgers",
+        "Beverages",
+        "Cafe",
+        "Desserts"
+      ],
+      "avgRating": 4.4,
+      "totalRatingsString": "5.2K+",
+      "sla": {
+        "deliveryTime": 20
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "271483",
-        "name": "Burger King",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/48b7eb06-7c2b-4015-9655-b645bd783d75_271483.jpg",
-        "locality": "VR Mall",
-        "areaName": "Krishnarajapura",
-        "costForTwo": "₹350 for two",
-        "cuisines": ["Burgers", "American"],
-        "avgRating": 4.3,
-        "avgRatingString": "4.3",
-        "totalRatingsString": "12K+",
-        "sla": { "deliveryTime": 21 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "271483",
+      "name": "Burger King",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/48b7eb06-7c2b-4015-9655-b645bd783d75_271483.jpg",
+      "locality": "VR Mall",
+      "areaName": "Krishnarajapura",
+      "costForTwo": "₹350 for two",
+      "cuisines": [
+        "Burgers",
+        "American"
+      ],
+      "avgRating": 4.3,
+      "totalRatingsString": "12K+",
+      "sla": {
+        "deliveryTime": 21
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "668040",
-        "name": "The Belgian Waffle Co.",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/16/f4636583-3ab9-49af-b72a-067a5482d946_668040.jpg",
-        "locality": "Muneswara Layout",
-        "areaName": "Krishnarajapura",
-        "costForTwo": "₹200 for two",
-        "cuisines": ["Waffle", "Desserts", "Ice Cream", "Beverages"],
-        "avgRating": 4.3,
-        "avgRatingString": "4.3",
-        "totalRatingsString": "1.7K+",
-        "sla": { "deliveryTime": 24 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "668040",
+      "name": "The Belgian Waffle Co.",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/16/f4636583-3ab9-49af-b72a-067a5482d946_668040.jpg",
+      "locality": "Muneswara Layout",
+      "areaName": "Krishnarajapura",
+      "costForTwo": "₹200 for two",
+      "cuisines": [
+        "Waffle",
+        "Desserts",
+        "Ice Cream",
+        "Beverages"
+      ],
+      "avgRating": 4.5,
+      "totalRatingsString": "1.7K+",
+      "sla": {
+        "deliveryTime": 24
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "veg"
     },
     {
-      "info": {
-        "id": "245959",
-        "name": "KFC",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/9/1ef6354b-642d-4f54-9347-a56ae995a7e8_245959.JPG",
-        "locality": "VR Mall",
-        "areaName": "Whitefield",
-        "costForTwo": "₹400 for two",
-        "cuisines": ["Burgers", "Fast Food", "Rolls & Wraps"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "7.0K+",
-        "sla": { "deliveryTime": 19 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "245959",
+      "name": "KFC",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/9/1ef6354b-642d-4f54-9347-a56ae995a7e8_245959.JPG",
+      "locality": "VR Mall",
+      "areaName": "Whitefield",
+      "costForTwo": "₹400 for two",
+      "cuisines": [
+        "Burgers",
+        "Fast Food",
+        "Rolls & Wraps"
+      ],
+      "avgRating": 4.2,
+      "totalRatingsString": "7.0K+",
+      "sla": {
+        "deliveryTime": 19
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "non-veg"
     },
     {
-      "info": {
-        "id": "68145",
-        "name": "WarmOven Cake & Desserts",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/5/29/d44b4cae-5218-49a6-8e55-76e44f3b0235_68145.JPG",
-        "locality": "Kaggadasapura",
-        "areaName": "Kaggadasapura",
-        "costForTwo": "₹200 for two",
-        "cuisines": ["Bakery", "Desserts", "Ice Cream", "Beverages", "Cakes"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "7.6K+",
-        "sla": { "deliveryTime": 26 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "68145",
+      "name": "WarmOven Cake & Desserts",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/5/29/d44b4cae-5218-49a6-8e55-76e44f3b0235_68145.JPG",
+      "locality": "Kaggadasapura",
+      "areaName": "Kaggadasapura",
+      "costForTwo": "₹200 for two",
+      "cuisines": [
+        "Bakery",
+        "Desserts",
+        "Ice Cream",
+        "Beverages",
+        "Cakes"
+      ],
+      "avgRating": 4.1,
+      "totalRatingsString": "7.6K+",
+      "sla": {
+        "deliveryTime": 26
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "veg"
     },
     {
-      "info": {
-        "id": "234631",
-        "name": "Truffles",
-        "cloudinaryImageId": "cd832b6167eb9f88aeb1ccdebf38d942",
-        "locality": "Kaveri Nagar",
-        "areaName": "Garudacharpalya",
-        "costForTwo": "₹350 for two",
-        "cuisines": [
-          "American",
-          "Continental",
-          "Desserts",
-          "Bakery",
-          "Beverages",
-          "Pastas",
-          "Italian"
-        ],
-        "avgRating": 4.5,
-        "avgRatingString": "4.5",
-        "totalRatingsString": "75K+",
-        "sla": { "deliveryTime": 13 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "234631",
+      "name": "Truffles",
+      "cloudinaryImageId": "cd832b6167eb9f88aeb1ccdebf38d942",
+      "locality": "Kaveri Nagar",
+      "areaName": "Garudacharpalya",
+      "costForTwo": "₹350 for two",
+      "cuisines": [
+        "American",
+        "Continental",
+        "Desserts",
+        "Bakery",
+        "Beverages",
+        "Pastas",
+        "Italian"
+      ],
+      "avgRating": 4.5,
+      "totalRatingsString": "75K+",
+      "sla": {
+        "deliveryTime": 13
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "23823",
-        "name": "Domino's Pizza",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/8/8/1cc89db2-0e22-4970-858f-0e5bad246c20_23823.JPG",
-        "locality": "Garudachar Palya",
-        "areaName": "Mahadevpura",
-        "costForTwo": "₹400 for two",
-        "cuisines": ["Pizzas", "Italian", "Pastas", "Desserts"],
-        "avgRating": 4.4,
-        "avgRatingString": "4.4",
-        "totalRatingsString": "16K+",
-        "sla": { "deliveryTime": 20 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "23823",
+      "name": "Domino's Pizza",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/8/8/1cc89db2-0e22-4970-858f-0e5bad246c20_23823.JPG",
+      "locality": "Garudachar Palya",
+      "areaName": "Mahadevpura",
+      "costForTwo": "₹400 for two",
+      "cuisines": [
+        "Pizzas",
+        "Italian",
+        "Pastas",
+        "Desserts"
+      ],
+      "avgRating": 4.4,
+      "totalRatingsString": "16K+",
+      "sla": {
+        "deliveryTime": 20
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "62916",
-        "name": "LunchBox - Meals and Thalis",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/10/16/6d78cb07-2146-4ed7-8c1b-185f9d15d939_62916.jpg",
-        "locality": "Brigade Metropolis",
-        "areaName": "Mahadevapura",
-        "costForTwo": "₹200 for two",
-        "cuisines": ["Thalis", "North Indian", "Biryani"],
-        "avgRating": 4.3,
-        "avgRatingString": "4.3",
-        "totalRatingsString": "5.5K+",
-        "sla": { "deliveryTime": 17 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "62916",
+      "name": "LunchBox - Meals and Thalis",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/10/16/6d78cb07-2146-4ed7-8c1b-185f9d15d939_62916.jpg",
+      "locality": "Brigade Metropolis",
+      "areaName": "Mahadevapura",
+      "costForTwo": "₹200 for two",
+      "cuisines": [
+        "Thalis",
+        "North Indian",
+        "Biryani"
+      ],
+      "avgRating": 3.8,
+      "totalRatingsString": "500",
+      "sla": {
+        "deliveryTime": 17
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "390058",
-        "name": "NH1 Bowls - Highway To North",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/b6389471-6864-47f6-a175-b98d6f12c534_390058.jpg",
-        "locality": "Timaya Layout",
-        "areaName": "Mahadevapura",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["North Indian", "Punjabi", "Home Food"],
-        "avgRating": 4.7,
-        "avgRatingString": "4.7",
-        "totalRatingsString": "1.1K+",
-        "sla": { "deliveryTime": 15 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "390058",
+      "name": "NH1 Bowls - Highway To North",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/8/b6389471-6864-47f6-a175-b98d6f12c534_390058.jpg",
+      "locality": "Timaya Layout",
+      "areaName": "Mahadevapura",
+      "costForTwo": "₹250 for two",
+      "cuisines": [
+        "North Indian",
+        "Punjabi",
+        "Home Food"
+      ],
+      "avgRating": 3.9,
+      "totalRatingsString": "1.1K+",
+      "sla": {
+        "deliveryTime": 15
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "750226",
-        "name": "Daily Kitchen - Everyday Homely Meals",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/10/cc54afdf-5d3c-4975-b761-70010d97ca53_750226.jpg",
-        "locality": "Timaya Layout",
-        "areaName": "Mahadevpura",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["Home Food", "Indian", "North Indian", "Thalis"],
-        "avgRating": 4.5,
-        "avgRatingString": "4.5",
-        "totalRatingsString": "919",
-        "sla": { "deliveryTime": 15 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "750226",
+      "name": "Daily Kitchen - Everyday Homely Meals",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/10/cc54afdf-5d3c-4975-b761-70010d97ca53_750226.jpg",
+      "locality": "Timaya Layout",
+      "areaName": "Mahadevpura",
+      "costForTwo": "₹250 for two",
+      "cuisines": [
+        "Home Food",
+        "Indian",
+        "North Indian",
+        "Thalis"
+      ],
+      "avgRating": 3.8,
+      "totalRatingsString": "919",
+      "sla": {
+        "deliveryTime": 15
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "696316",
-        "name": "Subway",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/12/886c958c-590d-4b38-adf9-d9fdb30b1804_696316.jpg",
-        "locality": "Space Versova",
-        "areaName": "C.V.Raman Nagar",
-        "costForTwo": "₹400 for two",
-        "cuisines": ["sandwich", "Salads", "wrap", "Healthy Food"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "2.9K+",
-        "sla": { "deliveryTime": 21 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "696316",
+      "name": "Subway",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/12/886c958c-590d-4b38-adf9-d9fdb30b1804_696316.jpg",
+      "locality": "Space Versova",
+      "areaName": "C.V.Raman Nagar",
+      "costForTwo": "₹400 for two",
+      "cuisines": [
+        "sandwich",
+        "Salads",
+        "wrap",
+        "Healthy Food"
+      ],
+      "avgRating": 4.2,
+      "totalRatingsString": "2.9K+",
+      "sla": {
+        "deliveryTime": 21
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "257684",
-        "name": "Wow! Momo",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/30/2c95556f-09d4-43b2-a9d4-d1253e514454_257684.jpg",
-        "locality": "Thigalarapalya",
-        "areaName": "KR Puram",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["Momos", "Chinese", "fastfood", "Asian", "Beverages"],
-        "avgRating": 3.8,
-        "avgRatingString": "3.8",
-        "totalRatingsString": "1.2K+",
-        "sla": { "deliveryTime": 27 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "257684",
+      "name": "Wow! Momo",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/30/2c95556f-09d4-43b2-a9d4-d1253e514454_257684.jpg",
+      "locality": "Thigalarapalya",
+      "areaName": "KR Puram",
+      "costForTwo": "₹250 for two",
+      "cuisines": [
+        "Momos",
+        "Chinese",
+        "fastfood",
+        "Asian",
+        "Beverages"
+      ],
+      "avgRating": 3.8,
+      "totalRatingsString": "1.2K+",
+      "sla": {
+        "deliveryTime": 27
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "13703",
-        "name": "Pizza Hut",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/33fddc82-343f-4e3f-860e-a9a599a00b1b_13703.JPG",
-        "locality": "Kaggadasapura Main Road",
-        "areaName": "CV Raman Nagar",
-        "costForTwo": "₹350 for two",
-        "cuisines": ["Pizzas"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "17K+",
-        "sla": { "deliveryTime": 25 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "13703",
+      "name": "Pizza Hut",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/9/33fddc82-343f-4e3f-860e-a9a599a00b1b_13703.JPG",
+      "locality": "Kaggadasapura Main Road",
+      "areaName": "CV Raman Nagar",
+      "costForTwo": "₹350 for two",
+      "cuisines": [
+        "Pizzas"
+      ],
+      "avgRating": 4.1,
+      "totalRatingsString": "17K+",
+      "sla": {
+        "deliveryTime": 25
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "618083",
-        "name": "La Pino'z Pizza",
-        "cloudinaryImageId": "d3pgrav1whn3gzcvy5qk",
-        "locality": "Kadubisanahalli",
-        "areaName": "Kadubeesanahalli",
-        "costForTwo": "₹400 for two",
-        "cuisines": ["Pizzas", "Pastas", "Italian", "Desserts", "Beverages"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "5.5K+",
-        "sla": { "deliveryTime": 31 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "618083",
+      "name": "La Pino'z Pizza",
+      "cloudinaryImageId": "d3pgrav1whn3gzcvy5qk",
+      "locality": "Kadubisanahalli",
+      "areaName": "Kadubeesanahalli",
+      "costForTwo": "₹400 for two",
+      "cuisines": [
+        "Pizzas",
+        "Pastas",
+        "Italian",
+        "Desserts",
+        "Beverages"
+      ],
+      "avgRating": 4.2,
+      "totalRatingsString": "5.5K+",
+      "sla": {
+        "deliveryTime": 31
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "393839",
-        "name": "Chinese Wok",
-        "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
-        "locality": "Garudacharpalya",
-        "areaName": "Whitefield",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["Chinese", "Asian", "Tibetan", "Desserts"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "5.0K+",
-        "sla": { "deliveryTime": 17 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "393839",
+      "name": "Chinese Wok",
+      "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
+      "locality": "Garudacharpalya",
+      "areaName": "Whitefield",
+      "costForTwo": "₹250 for two",
+      "cuisines": [
+        "Chinese",
+        "Asian",
+        "Tibetan",
+        "Desserts"
+      ],
+      "avgRating": 4.2,
+      "totalRatingsString": "5.0K+",
+      "sla": {
+        "deliveryTime": 17
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "289267",
-        "name": "BOX8 - Desi Meals",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/3/26/f4a089d2-0ec4-4f8b-a632-14b75e838d5c_289267.jpg",
-        "locality": "Timaya Layout",
-        "areaName": "Mahadevapura",
-        "costForTwo": "₹200 for two",
-        "cuisines": ["North Indian", "Biryani", "Thalis", "Home Food"],
-        "avgRating": 4.6,
-        "avgRatingString": "4.6",
-        "totalRatingsString": "5.6K+",
-        "sla": { "deliveryTime": 15 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "289267",
+      "name": "BOX8 - Desi Meals",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/3/26/f4a089d2-0ec4-4f8b-a632-14b75e838d5c_289267.jpg",
+      "locality": "Timaya Layout",
+      "areaName": "Mahadevapura",
+      "costForTwo": "₹200 for two",
+      "cuisines": [
+        "North Indian",
+        "Biryani",
+        "Thalis",
+        "Home Food"
+      ],
+      "avgRating": 3.6,
+      "totalRatingsString": "5.6K+",
+      "sla": {
+        "deliveryTime": 15
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     },
     {
-      "info": {
-        "id": "149682",
-        "name": "Samosa Party",
-        "cloudinaryImageId": "thzhbierhb2qxhqsl0bo",
-        "locality": "Munnekollal",
-        "areaName": "Marathahalli",
-        "costForTwo": "₹100 for two",
-        "cuisines": [
-          "Fast Food",
-          "Snacks",
-          "Beverages",
-          "Chaat",
-          "North Indian",
-          "Street Food",
-          "Sweets",
-          "Desserts",
-          "Punjabi",
-          "Bakery"
-        ],
-        "avgRating": 4.3,
-        "avgRatingString": "4.3",
-        "totalRatingsString": "18K+",
-        "sla": { "deliveryTime": 26 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "149682",
+      "name": "Samosa Party",
+      "cloudinaryImageId": "thzhbierhb2qxhqsl0bo",
+      "locality": "Munnekollal",
+      "areaName": "Marathahalli",
+      "costForTwo": "₹100 for two",
+      "cuisines": [
+        "Fast Food",
+        "Snacks",
+        "Beverages",
+        "Chaat",
+        "North Indian",
+        "Street Food",
+        "Sweets",
+        "Desserts",
+        "Punjabi",
+        "Bakery"
+      ],
+      "avgRating": 3.9,
+      "totalRatingsString": "18K+",
+      "sla": {
+        "deliveryTime": 26
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "veg"
     },
     {
-      "info": {
-        "id": "17759",
-        "name": "Faasos - Wraps, Rolls & Shawarma",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/7/28/06273080-415d-402f-878f-20ceaf6f2032_17759.JPG",
-        "locality": "Brigade Metropolis",
-        "areaName": "Whitefield",
-        "costForTwo": "₹200 for two",
-        "cuisines": [
-          "Kebabs",
-          "Fast Food",
-          "Snacks",
-          "American",
-          "Healthy Food",
-          "Desserts",
-          "Beverages"
-        ],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "10K+",
-        "sla": { "deliveryTime": 18 },
-        "isOpen": true,
-        "type": "F"
-      }
-    },
-    {
-      "info": {
-        "id": "392823",
-        "name": "Big Bowl",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/6/22/deff0d02-ca1d-4ef9-9d62-b0cbeabf33d3_392823.JPG",
-        "locality": "Garudacharpalya",
-        "areaName": "Mahadevapura",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["North Indian", "Chinese", "Tibetan", "Desserts"],
-        "avgRating": 4.2,
-        "avgRatingString": "4.2",
-        "totalRatingsString": "2.4K+",
-        "sla": { "deliveryTime": 18 },
-        "isOpen": true,
-        "type": "F"
-      }
-    },
-    {
-      "info": {
-        "id": "622031",
-        "name": "MOJO Pizza - 2X Toppings",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/12/b340fa89-8d71-449c-b8e3-bd1f4cc48f0f_622031.jpg",
-        "locality": "Mahadevpura",
-        "areaName": "Mahadevapura",
-        "costForTwo": "₹250 for two",
-        "cuisines": ["Pizzas", "Italian", "Fast Food", "Desserts"],
-        "avgRating": 4.5,
-        "avgRatingString": "4.5",
-        "totalRatingsString": "1.3K+",
-        "sla": { "deliveryTime": 25 },
-        "isOpen": true,
-        "type": "F"
-      }
+      "id": "17759",
+      "name": "Faasos - Wraps, Rolls & Shawarma",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/7/28/06273080-415d-402f-878f-20ceaf6f2032_17759.JPG",
+      "locality": "Brigade Metropolis",
+      "areaName": "Whitefield",
+      "costForTwo": "₹200 for two",
+      "cuisines": [
+        "Kebabs",
+        "Fast Food",
+        "Snacks",
+        "American",
+        "Healthy Food",
+        "Desserts",
+        "Beverages"
+      ],
+      "avgRating": 4.2,
+      "totalRatingsString": "10K+",
+      "sla": {
+        "deliveryTime": 18
+      },
+      "isOpen": true,
+      "type": "F",
+      "vegType": "mixed"
     }
   ]
 }

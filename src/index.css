@@ -11,11 +11,15 @@
     width: 100px;
     height: 119.5px;
     border: 1px solid grey;
-    border-radius: 10px
+    /* to convert border in circle */
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo:hover {
-    box-shadow: 3px 3px 3px grey;
+    box-shadow: 3px 3px 3px rgb(69, 68, 68);
+    transform: scale(1.1);
 }
 
 .nav-items {
@@ -41,25 +45,120 @@
     border-radius: 10px;
 }
 
-.search {
+.search-and-filters {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 10px;
 }
 
-.search-text {
-    margin: 0px;
-    font-size: x-large;
+/* .search {
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.search-icon {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 10px;
 }
 
 .search-text-box {
     width: 250px;
-    height: 25px;
+    padding: 8px 12px 8px 35px;
     border: 1px solid black;
     border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+} */
+
+.search {
+  position: relative;          /* allows absolute positioning of icon */
+  display: inline-block;
+  width: 250px;                /* or 100% if you want it responsive */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;                  /* space from the left */
+  transform: translateY(-50%); /* centers vertically */
+  color: gray;
+  font-size: 16px;             /* adjust icon size */
+  pointer-events: none;        /* clicks go to input */
+}
+
+.search-text-box {
+  width: 100%;
+  padding: 8px 12px 8px 35px;  /* left padding to avoid overlap with icon */
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.search-text-box:focus {
+  outline: none;
+  border-color: grey;
+  box-shadow: 0 0 4px rgba(30, 144, 255, 0.5);
 }
 
 .search-text-box:hover {
     box-shadow: 2px 2px 2px grey;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.veg-only-btn {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 0.2s ease; /* smooth effect */
+}
+
+.veg-only-btn:hover {
+    box-shadow: 2px 2px 2px grey;
+    transform: scale(1.1);
+    background-color: rgb(177, 242, 177);
+    cursor: pointer;
+}
+
+.veg-only-btn.active {
+    background-color: rgb(177, 242, 177);
+    box-shadow: 2px 2px 5px grey;
+    transform: scale(1.05);
+}
+
+.top-rated-btn {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    border-radius: 5px;
+  padding: 5px 10px;
+  transition: all 0.2s ease; /* smooth effect */
+}
+
+.top-rated-btn:hover {
+  box-shadow: 2px 2px 5px grey;
+  transform: scale(1.05);   /* slightly less aggressive */
+  background-color: rgb(144, 207, 246);
+  cursor: pointer;
+}
+
+.top-rated-btn.active {
+  background-color: rgb(144, 207, 246);
+  box-shadow: 2px 2px 5px grey;
+  transform: scale(1.05);
 }
 
 .res-container {
@@ -72,22 +171,24 @@
     width: 219px;
     height: 350px;
     padding: 10px;
-    border: 1px solid black;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .res-card-details {
     margin: 10px auto;
 }
 
-.res-card:hover {
-    box-shadow: 3px 3px 3px grey;
-    cursor: pointer;
+.res-card-details.heading {
+  display: flex;
+  align-items: center;
+  gap: 1px;
 }
 
-.search {
-    padding: 10px 0px;
+.res-card:hover {
+    box-shadow: 3px 3px 3px 3px grey;
+    cursor: pointer;
+    transform: scale(1.015);
 }
 
 .res-logo {

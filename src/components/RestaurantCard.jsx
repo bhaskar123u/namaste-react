@@ -1,27 +1,70 @@
 import { CDN_URL } from "../common/constants";
+import { FaCircle } from "react-icons/fa";
 
 const RestaurantCard = ({ props }) => {
-  console.log("props", props);
-  const { name, cuisines, avgRating, cloudinaryImageId, costForTwo, sla } =
-    props;
+  // variables and state variables
+  const {
+    name,
+    cuisines,
+    avgRating,
+    cloudinaryImageId,
+    costForTwo,
+    sla,
+    totalRatingsString,
+    vegType
+  } = props;
+
+  // functions
+  const renderVegIcon = () => {
+    if (vegType === "veg") {
+      return (
+        <FaCircle
+          style={{ color: "green", fontSize: "12px", marginRight: "6px" }}
+        />
+      );
+    }
+    if (vegType === "non-veg") {
+      return (
+        <FaCircle
+          style={{ color: "red", fontSize: "12px", marginRight: "6px" }}
+        />
+      );
+    }
+    if (vegType === "mixed") {
+      return (
+        <>
+          <FaCircle
+            style={{ color: "green", fontSize: "12px", marginRight: "3px" }}
+          />
+          <FaCircle
+            style={{ color: "red", fontSize: "12px", marginRight: "6px" }}
+          />
+        </>
+      );
+    }
+    return null;
+  };
+
+  // JSX
   return (
     <div className="res-card">
       <img
         className="res-logo"
         alt="res-card-logo"
-        src={
-          CDN_URL +
-          cloudinaryImageId
-        }
-      ></img>
+        src={CDN_URL + cloudinaryImageId}
+      />
       <div className="res-card-details">
-        <h3 className="res-card-details heading">{name}</h3>
-        <h4 className="res-card-details cuisines">{cuisines.join(", ")}</h4>
-        <h4 className="res-card-details avgRating">{avgRating} ⭐️</h4>
-        <h4 className="res-card-details costForTwo">{costForTwo}</h4>
-        <h4 className="res-card-details deliveryTime">
-          {sla.deliveryTime} mins
-        </h4>
+        <p className="res-card-details heading">
+          {renderVegIcon(vegType)}
+          {name}
+        </p>
+
+        <p className="res-card-details cuisines">{cuisines.join(", ")}</p>
+        <p className="res-card-details avgRating">
+          {avgRating} ⭐️ by {totalRatingsString} users
+        </p>
+        <p className="res-card-details costForTwo">{costForTwo}</p>
+        <p className="res-card-details deliveryTime">{sla.deliveryTime} mins</p>
       </div>
     </div>
   );

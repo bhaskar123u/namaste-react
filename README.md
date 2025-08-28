@@ -68,4 +68,12 @@ Not using keys <<< index as keys <<< unique key.
 1 -> export default Header; then import Header from "path";
 2-> export const data; then import {data} from "path"; (when we have to multiple things from same file)
 
-32. 
+32. Whenever some data changes, let's say we have a list of objects which is powering some UI, now whenever that list changes, it won't update the UI, UNTIL THAT VARIABLE IS TRACKED BY REACT. Dom manipulation is powered by VIRTUAL DOM and diff algorithms. To do this react gives a way to declare a variable which is TRACKED BY REACT. We have to use a method called useState. It is a react hook. Hooks is nothing but a normal JS utility function. Most common ones are - useState, useEffect.
+
+33. How do we create such variables - using useState. useState returns 2 things, react variable and a method to set that variable.
+JS variable - const list = ['default_value'];
+React state variable - const [list, setList] = useState(['default_value']); now to update the list we will call setList( ) function. Whenever the state variable will change, react RE-RENDERS the UI component where the state variable lives.
+
+34. React uses reconciliation algorithm(React 16). It is also known as REACT FIBER. On UI let's say we have a DOM(tree), and the UI changes to filter some data which is supposed to update the UI. React creates a VIRTUAL DOM(internally it is a nested object, js representation of all html elements). It is a copy of actual DOM(tree). Now all the changes that happens, is tracked using old VIRTUAL DOM and new VIRTUAL DOM. As soon as something changes there is a delta between VIRTUAL DOMs. The difference is calculated and UI component is updated accordingly. Read here - https://github.com/acdlite/react-fiber-architecture
+
+35. We should note that useState doesn't immediately changes data, let's say we want to build some filters using set method of useState, it is not always in sync. We can use useEffect hooks for that.

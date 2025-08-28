@@ -1,5 +1,8 @@
 const Header = () => {
+  // variables and state variables
   const logo = new URL("../resources/food-app-logo.png", import.meta.url).href;
+
+  // JSX
   return (
     <div className="header">
       <div className="logo-container">
