@@ -2,7 +2,6 @@ import { CDN_URL } from "../common/constants";
 import { FaCircle } from "react-icons/fa";
 
 const RestaurantCard = ({ props }) => {
-  // variables and state variables
   const {
     name,
     cuisines,
@@ -11,41 +10,26 @@ const RestaurantCard = ({ props }) => {
     costForTwo,
     sla,
     totalRatingsString,
-    vegType
+    vegType,
   } = props;
 
-  // functions
   const renderVegIcon = () => {
-    if (vegType === "veg") {
+    if (vegType === "veg")
+      return <FaCircle className="veg-dot veg" role="img" aria-label="veg" />;
+    if (vegType === "non-veg")
       return (
-        <FaCircle
-          style={{ color: "green", fontSize: "12px", marginRight: "6px" }}
-        />
+        <FaCircle className="veg-dot non" role="img" aria-label="non-veg" />
       );
-    }
-    if (vegType === "non-veg") {
+    if (vegType === "mixed")
       return (
-        <FaCircle
-          style={{ color: "red", fontSize: "12px", marginRight: "6px" }}
-        />
+        <span className="veg-dot mixed" role="img" aria-label="veg and non-veg">
+          <FaCircle className="g" />
+          <FaCircle className="r" />
+        </span>
       );
-    }
-    if (vegType === "mixed") {
-      return (
-        <>
-          <FaCircle
-            style={{ color: "green", fontSize: "12px", marginRight: "3px" }}
-          />
-          <FaCircle
-            style={{ color: "red", fontSize: "12px", marginRight: "6px" }}
-          />
-        </>
-      );
-    }
     return null;
   };
 
-  // JSX
   return (
     <div className="res-card">
       <img
@@ -54,11 +38,10 @@ const RestaurantCard = ({ props }) => {
         src={CDN_URL + cloudinaryImageId}
       />
       <div className="res-card-details">
-        <p className="res-card-details heading">
-          {renderVegIcon(vegType)}
+        <h3 className="res-card-details heading">
+          {renderVegIcon()}
           {name}
-        </p>
-
+        </h3>
         <p className="res-card-details cuisines">{cuisines.join(", ")}</p>
         <p className="res-card-details avgRating">
           {avgRating} ⭐️ by {totalRatingsString} users
