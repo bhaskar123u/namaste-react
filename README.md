@@ -72,8 +72,19 @@ Not using keys <<< index as keys <<< unique key.
 
 33. How do we create such variables - using useState. useState returns 2 things, react variable and a method to set that variable.
 JS variable - const list = ['default_value'];
-React state variable - const [list, setList] = useState(['default_value']); now to update the list we will call setList( ) function. Whenever the state variable will change, react RE-RENDERS the UI component where the state variable lives.
+React state variable - const [list, setList] = useState(['default_value']); now to update the list we will call setList( ) function. Whenever the state variable will change, react RE-RENDERS the UI component where the state variable lives. When we use setList('some_value'), this doesn't change the same variable but it creates a new variable internally, hence the const nature of the variable is not voilated.
 
 34. React uses reconciliation algorithm(React 16). It is also known as REACT FIBER. On UI let's say we have a DOM(tree), and the UI changes to filter some data which is supposed to update the UI. React creates a VIRTUAL DOM(internally it is a nested object, js representation of all html elements). It is a copy of actual DOM(tree). Now all the changes that happens, is tracked using old VIRTUAL DOM and new VIRTUAL DOM. As soon as something changes there is a delta between VIRTUAL DOMs. The difference is calculated and UI component is updated accordingly. Read here - https://github.com/acdlite/react-fiber-architecture
 
 35. We should note that useState doesn't immediately changes data, let's say we want to build some filters using set method of useState, it is not always in sync. We can use useEffect hooks for that.
+
+36. useEffect hook takes 2 arguments(callback fn, dependency array) - useEffect(()=> { console.log('callback fn is called');}, []). When the body component is loaded and the html is rendered, just after that the useEffect is called.
+Body component loaded - UI is rendered - useEffect is called.
+
+37. When we call a component like - `<Body />`, internally it will start executing all code, useState variables, then it will start rendering the JSX, meanwhile if it had encountered any useEffect code, it pushes that callback in a queue which is executed later.
+
+38. CORS - Cross Origin Request. Our browsers don't allow to call external api from local host as they are 2 different source. This happens when the api server has 'Access-Control-Allow-Origin' in it's header. There is way we can get rid of that while development mode - use allow cors extension.
+
+39. Shimmer - If we have a api call and based on tha data received, we are populating some UI, we should show shimmer for the time being the data is loaded. It will make UI/UX experience smooth as user sees a skeleton of page and then the actual page, making it a smooth experience.
+
+40. Whenever state variables update, react re-renders the component. useEffect(()=> { console.log('callback fn is called');}, []), this will be printed only once after the initial render. But useEffect(()=> { console.log('callback fn is called');}, [some_variable]), this will be printed once after the initial render and then everytime some_variable changes.

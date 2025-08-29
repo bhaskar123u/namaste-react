@@ -1,78 +1,71 @@
 import { useState, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
-import data from "../resources/restaurants-data.json";
 import RestaurantCard from "./RestaurantCard";
+import SearchAndFilters from "./SearchAndFilters";
 
 const Body = () => {
-  // state variables
-  const [finalRestaurantData] = useState(data.restaurants);
-  let [restaurantData, setRestaurantData] = useState(data.restaurants);
+  const [finalRestaurantData, setFinalRestaurantData] = useState([]);
+  const [restaurantData, setRestaurantData] = useState([]);
   const [topRatedFilterActive, setTopRatedFilterActive] = useState(false);
-  const [vegOnlyFilterActive, setVegOnlyFilterActive] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
-  // functions to modify state variables
+  async function fetchData() {
+    const resp = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.97530&lng=77.59100&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await resp.json();
+    const list =
+      json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [];
+    setFinalRestaurantData(list);
+    setRestaurantData(list);
+  }
+
+  // 1) Fetch once
   useEffect(() => {
-    let finalData = finalRestaurantData;
-    if (topRatedFilterActive) {
-      finalData = finalData.filter((r) => r.avgRating > 4);
-    }
-    if (vegOnlyFilterActive) {
-      finalData = finalData.filter((r) => r.vegType === "veg");
-    }
-    setRestaurantData(finalData);
-  }, [topRatedFilterActive, vegOnlyFilterActive, finalRestaurantData]);
+    fetchData();
+  }, []);
 
-  const topRatedRestaurantHandler = () => {
+  // 2) Handlers
+  function onSearchChange(e) {
+    setSearchText(e.target.value);
+  }
+
+  function onTopRatedClick() {
     setTopRatedFilterActive((prev) => !prev);
-  };
+  }
 
-  const vegOnlyRestaurantHandler = () => {
-    setVegOnlyFilterActive((prev) => !prev);
-  };
+  // 3) Derive the visible list from inputs
+  useEffect(() => {
+    let list = finalRestaurantData;
+
+    if (topRatedFilterActive) {
+      list = list.filter((r) => (r?.info?.avgRating || 0) > 4.5);
+    }
+
+    const q = searchText.trim().toLowerCase();
+    if (q) {
+      list = list.filter((r) =>
+        (r?.info?.name || "").toLowerCase().includes(q)
+      );
+    }
+
+    setRestaurantData(list);
+  }, [finalRestaurantData, topRatedFilterActive, searchText]);
 
   // JSX
   return (
     <div className="body">
-      <div className="search-and-filters">
-        <div className="search">
-          <FaSearch className="search-icon" />
-          <input
-            className="search-text-box"
-            type="text"
-            placeholder="type your restaurant here"
-          />
-        </div>
-        <div className="filter-buttons">
-          <div className="veg-only-filter">
-            <button
-              className={`veg-only-btn ${
-                vegOnlyFilterActive === true ? "active" : ""
-              }`}
-              onClick={vegOnlyRestaurantHandler}
-            >
-              Veg Only
-            </button>
-          </div>
-          <div className="top-rated-filter">
-            <button
-              className={`top-rated-btn ${
-                topRatedFilterActive === true ? "active" : ""
-              }`}
-              onClick={topRatedRestaurantHandler}
-            >
-              Top Rated
-            </button>
-          </div>
-        </div>
-      </div>
+      <SearchAndFilters
+        searchText={searchText}
+        onSearchChange={onSearchChange}
+        topRatedFilterActive={topRatedFilterActive}
+        onTopRatedClick={onTopRatedClick}
+      />
 
       <div className="res-container">
-        {
-          /* Restaurant Cards */
-          restaurantData.map((res) => (
-            <RestaurantCard key={res.id} props={res} />
-          ))
-        }
+        {restaurantData.map((res) => (
+          <RestaurantCard key={res.info.id} props={res.info} />
+        ))}
       </div>
     </div>
   );
