@@ -100,4 +100,9 @@ Body component loaded - UI is rendered - useEffect is called. The dependency arr
 44. We have 2 types of routing - Client Side Routing, Server Side Routing.
 SERVER SIDE ROUTING - User clicked on About Us page, then browsers make a call to server, fetches the html, css files and loads the page. CLIENT SIDE ROUTING - No network calls is made, all the components are already loaded code for all component in the start and it's just the component gets added according to the path.
 
-45. Dynamic Routing - 
+45. Dynamic Routing - We can create dynamic routing using react-router-dom for e.g., path: "/restaurant/:resId" and the component on which we click and get can be added as 
+`<Link to={/restaurant/${res.info.id}} className='card-link' key={res.info.id}> <RestaurantCard props={res.info} /> </Link>`. For complete syntax look into Body.jsx
+
+46. Class Based Components - Just a class with render method. The render method returns JSX.
+![Class Based Component vs Functional Component](./other/class-based-component-vs-functional-component.png)
+![Passing value as props](./other/passing-props.png)
