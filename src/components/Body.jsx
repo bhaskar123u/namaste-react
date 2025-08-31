@@ -40,7 +40,7 @@ const Body = () => {
     let list = finalRestaurantData;
 
     if (topRatedFilterActive) {
-      list = list.filter((r) => (r?.info?.avgRating || 0) > 4.5);
+      list = list.filter((r) => (r?.info?.avgRating || 0) >= 4.5);
     }
 
     const q = searchText.trim().toLowerCase();
