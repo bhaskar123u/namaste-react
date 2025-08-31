@@ -17,14 +17,14 @@ const RestaurantMenuCard = () => {
     data = await data.json();
     setRestaurantMenu(data);
   }
-  
+
   // ideally until everything is loaded, we should load a shimmer
-  if (restaurantMenu === null)
-    return <></>;
-  
+  if (restaurantMenu === null) return <></>;
+
   // console.log("whole restaurantMenu ->", restaurantMenu);
   const restaurantName = restaurantMenu?.data?.cards[0]?.card?.card?.text;
-  const restaurantCardDetails = restaurantMenu?.data?.cards[2]?.card?.card?.info;
+  const restaurantCardDetails =
+    restaurantMenu?.data?.cards[2]?.card?.card?.info;
   const restaurantAddress =
     restaurantCardDetails?.locality + ", " + restaurantCardDetails?.areaName;
   const rating = restaurantCardDetails?.avgRating;
@@ -33,8 +33,20 @@ const RestaurantMenuCard = () => {
   const cuisines = restaurantCardDetails?.cuisines.join(", ");
   const minSlaTime = restaurantCardDetails?.sla?.minDeliveryTime;
   const maxSlaTime = restaurantCardDetails?.sla?.maxDeliveryTime;
-  const recommendedFoodMenu = restaurantMenu.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
-  // console.log("recommendedFoodMenu ->", recommendedFoodMenu);
+
+  // menu items in json
+  const foodMenu =
+    restaurantMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+      ?.filter((menu) => {
+        return (
+          (menu?.card?.card?.["@type"] ===
+            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") && (menu.card.card.itemCards.length > 0)
+        );
+      })
+      .map((menu) => {
+        return menu?.card?.card;
+      });;
+  console.log("foodMenu ->", foodMenu);
 
   return (
     <div className="menu-container">
@@ -58,19 +70,26 @@ const RestaurantMenuCard = () => {
         <div className="food-menu-container">
           <p className="menu-list-header">🍱 M E N U 🍱</p>
           <div className="menu-list-category">
-            <hr className="horizontal-line" />
-            <div className="menu-list-items">
-              <p className="menu-list-item-tag">
-                Recommended ({recommendedFoodMenu.itemCards.length})
-              </p>
-              <div className="menu-list-items-cards">
-                {/* render all food menu names */}
-                {recommendedFoodMenu.itemCards.map((item) => (
-                  <FoodItemCard props={item} key={item.card.info.id} />
-                ))}
-              </div>
-            </div>
-            <hr className="horizontal-line" />
+            {/* to be added for all lists */}
+            {foodMenu.map((menu) => {
+              return (
+                <div className="menu-list-category-container" key={menu.categoryId}>
+                  <hr className="horizontal-line" />
+                  <div className="menu-list-items">
+                    <p className="menu-list-item-tag">
+                      {menu.title} ({menu.itemCards.length})
+                    </p>
+                    <div className="menu-list-items-cards">
+                      {/* render all food menu names */}
+                      {menu.itemCards.map((item) => (
+                        <FoodItemCard props={item} key={item.card.info.id} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
           </div>
         </div>
       </div>

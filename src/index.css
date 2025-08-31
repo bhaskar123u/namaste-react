@@ -24,7 +24,7 @@ img{ display:block; max-width:100%; }
 
 /* ============ Page wrapper ============ */
 .page{
-  background: rgb(144, 178, 144);
+  background: rgb(168, 200, 168);
   min-height:100vh;
 }
 
@@ -356,6 +356,7 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   height: 100px;
   border: 1px solid grey;
   border-radius: 10px;
+  background-color: white;
 }
 
 .food-item-add-btn {
