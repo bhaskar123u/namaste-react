@@ -1,4 +1,4 @@
-This codebase is for Namaste React course for notes and code (https://bhaskar123u.github.io/namaste-react/)
+This codebase is for Namaste React course. Install CORS extension in your web browsers and check the project here 👉🏻 https://bhaskar123u.github.io/namaste-react/ 👈🏻
 
 1. React element - Nothing but simple JS Object.
 
@@ -79,12 +79,25 @@ React state variable - const [list, setList] = useState(['default_value']); now 
 35. We should note that useState doesn't immediately changes data, let's say we want to build some filters using set method of useState, it is not always in sync. We can use useEffect hooks for that.
 
 36. useEffect hook takes 2 arguments(callback fn, dependency array) - useEffect(()=> { console.log('callback fn is called');}, []). When the body component is loaded and the html is rendered, just after that the useEffect is called.
-Body component loaded - UI is rendered - useEffect is called.
+Body component loaded - UI is rendered - useEffect is called. The dependency array is not mandatory, in that case the useEffect will be called everytime the component renders. If the dependency array is empty [], useEffect is called only on initial render and just once. If we put something in dependency array, only if that changes, useEffect is called.
 
-37. When we call a component like - `<Body />`, internally it will start executing all code, useState variables, then it will start rendering the JSX, meanwhile if it had encountered any useEffect code, it pushes that callback in a queue which is executed later.
+37. Whenever a state variable update, react re-renders the component. useEffect(()=> { console.log('callback fn is called');}, []), this will be printed only once after the initial render. But useEffect(()=> { console.log('callback fn is called');}, [some_variable]), this will be printed once after the initial render and then everytime some_variable changes. BEST PRACTICES - NEVER CREATE STATE VARIABLES outside of the component. Keep all state variables in top of the component. NEVER CREATE STATE VARIABLES in if-else code/for loops/functions, even though it can be done, but avoid it.
 
-38. CORS - Cross Origin Request. Our browsers don't allow to call external api from local host as they are 2 different source. This happens when the api server has 'Access-Control-Allow-Origin' in it's header. There is way we can get rid of that while development mode - use allow cors extension.
+38. When we call a component like - `<Body />`, internally it will start executing all code, useState variables, then it will start rendering the JSX, meanwhile if it had encountered any useEffect code, it pushes that callback in a queue which is executed later.
+
+39. CORS - Cross Origin Request. Our browsers don't allow to call external api from local host as they are 2 different source. This happens when the api server has 'Access-Control-Allow-Origin' in it's header. There is way we can get rid of that while development mode - use allow cors extension.
 
 39. Shimmer - If we have a api call and based on tha data received, we are populating some UI, we should show shimmer for the time being the data is loaded. It will make UI/UX experience smooth as user sees a skeleton of page and then the actual page, making it a smooth experience.
 
-40. Whenever state variables update, react re-renders the component. useEffect(()=> { console.log('callback fn is called');}, []), this will be printed only once after the initial render. But useEffect(()=> { console.log('callback fn is called');}, [some_variable]), this will be printed once after the initial render and then everytime some_variable changes.
+40. Paths - We are using react-router dom for different paths. We have to create a configuration for paths and the pass it while rendering. We use createBrowserRouter to create routing config and then RouterProvider to provide this configuration to the main render method.
+
+41. react-router-dom gives a hook - useRouterError which captures all error and help in displaying logical messages.
+
+42. `<Outlet />` component is provided by react-router-dom, which is nothing but a placeholder. Based on routes it can be any component as mentioned in route config for e.g., `<Header /><Outlet />` can become `<Header /><Outlet />` when the path is "/", it can become `<Header /><About />` when the path is "/about".
+
+43. Never use `<a>` tags for re-routing as it refreshes the whole page. It is still possible that the whole page is not reloaded still we get to see a new page UI. We can use `<Link>` for e.g., `<Link to="/">Home</Link>`. We can see in elements in inspect tabs. It's basically reloading a page vs refreshing the components. That is why react applications are known as SINGLE PAGE APPLICATION, just components interchanges. Traditionally we use to have different html pages for different screens like index.html, about-us.html and all these were tagged in `<a>` and when user clicked on them, it loaded the entire page.
+
+44. We have 2 types of routing - Client Side Routing, Server Side Routing.
+SERVER SIDE ROUTING - User clicked on About Us page, then browsers make a call to server, fetches the html, css files and loads the page. CLIENT SIDE ROUTING - No network calls is made, all the components are already loaded code for all component in the start and it's just the component gets added according to the path.
+
+45. Dynamic Routing - 

@@ -11,6 +11,16 @@ const RestaurantCard = ({ props }) => {
     totalRatingsString,
   } = props;
 
+  function previewCuisinesArray(arr) {
+    // join all with comma
+    let str = arr.join(", ");
+    if (str.length > 40) {
+      str = str.substring(0, str.lastIndexOf(','));
+      str = str.substring(0, 40) + "...";
+    }
+    return str;
+  }
+
   return (
     <div className="res-card">
       <img
@@ -19,10 +29,10 @@ const RestaurantCard = ({ props }) => {
         src={CDN_URL + cloudinaryImageId}
       />
       <div className="res-card-details">
-        <h3 className="res-card-details heading">
-          {name}
-        </h3>
-        <p className="res-card-details cuisines">{cuisines.join(", ")}</p>
+        <h3 className="res-card-details heading">{name}</h3>
+        <p className="res-card-details cuisines">
+          {previewCuisinesArray(cuisines)}
+        </p>
         <p className="res-card-details avgRating">
           {avgRating} ⭐️ by {totalRatingsString} users
         </p>

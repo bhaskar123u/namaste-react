@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SearchAndFilters from "./SearchAndFilters";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [finalRestaurantData, setFinalRestaurantData] = useState([]);
@@ -64,7 +65,13 @@ const Body = () => {
 
       <div className="res-container">
         {restaurantData.map((res) => (
-          <RestaurantCard key={res.info.id} props={res.info} />
+          <Link
+            to={`/restaurant/${res.info.id}`}
+            className="card-link"
+            key={res.info.id}
+          >
+            <RestaurantCard props={res.info} />
+          </Link>
         ))}
       </div>
     </div>
