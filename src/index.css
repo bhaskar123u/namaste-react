@@ -375,6 +375,11 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   background-color: #f0f0f0;
 }
 
+.update-course-count-btn:hover {
+  color: green;
+  background-color: lightblue
+}
+
 /* ============ Responsive Tweaks ============ */
 @media (max-width:900px){
   .container{ padding:12px; }

@@ -104,5 +104,86 @@ SERVER SIDE ROUTING - User clicked on About Us page, then browsers make a call t
 `<Link to={/restaurant/${res.info.id}} className='card-link' key={res.info.id}> <RestaurantCard props={res.info} /> </Link>`. For complete syntax look into Body.jsx
 
 46. Class Based Components - Just a class with render method. The render method returns JSX.
+
 ![Class Based Component vs Functional Component](./other/class-based-component-vs-functional-component.png)
+
 ![Passing value as props](./other/passing-props.png)
+
+As soon as the JSX stars rendering and react sees that a class based component is called, it immediately starts loading/instantiating it and then constructor() is called followed by render().
+
+47. We can declare state variables in constructor for e.g.,
+constructor(props) {
+    super(props);
+    this.state = {
+      courseCompletedCount: 1,
+    };
+}
+If you write super(props), React passes the props up to the React.Component constructor, then this.props is set up properly inside your component.
+
+48. We can set state using this.setState() for e.g., assuming courseCompletedCount is a state variable inside constructor
+this.setState({
+    courseCompletedCount: this.state.courseCompletedCount + 1
+});
+The component is re-rendered and UI is updated. The state variable(this.state) is a big object, this.setState only updates what is needed, other variables are not updated. When setState() is called, the updating part of react life cycle starts.
+
+49. Life cycle of class based component - constructor -> render(DOM update) -> componentDidMount
+Condition 1 : Parent(Child)
+Parent constructor
+Parent render
+  Child constructor
+  Child render
+  Child ComponentDidMount
+Parent ComponentDidMount
+
+Condition 2 : Parent(Child1, Child2) -> here 2 different instances of Child are created
+Parent constructor
+Parent render
+  Child1 constructor
+  Child1 render
+  Child2 constructor
+  Child2 render
+  // react will batch render phases for all children for optimisation, before calling ComponentDidMount
+  // everything in render phase happens at VDOM (nothing but JS Object) level that is very passed
+  ------- DOM MANIPULATION STARTS -------
+  Child1 ComponentDidMount
+  Child2 ComponentDidMount
+  // react will batch commit phases for all children for optimisation, as DOM manipulation is the most expensive
+  // thing while updating a component
+Parent ComponentDidMount
+
+Let's say we are updating something on UI
+
+constructor -> render(DOM update) -> componentDidMount(only called once) -> if setState() is called -> render(DOM update) -> componentDidUpdate -> componentUnmount
+
+First mount cycle -> update cycle -> unmount cycle(when component is removed from UI)
+
+Refer - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+![React Life Cycle](./other/react-life-cycle.png)
+
+render phase - constructor, render
+commit - actual update of DOM
+
+50. Use of componentDidMount - to make api calls, let the component load with basic details(all html tags), react can make quick re-rendering so once we have the component ready we can fill the data. No need to wait for the api to send data. So basically useEffect(() => {}) is equivalent to componentDidMount and useEffect(() => {},[]) is equivalent to componentDidUpdate.
+
+51. Let's say we have a setInterval(()=>{console.log('India')},1000); which is printing India in console after every 1 second and this is added in componentDidMount. Now even if we goto different page, this interval will still be alive and let's say this interval was added in "/about" page component, it will still be active if we visit "/contact" and everytime we will visit "/about", an extra interval will be started 😂 - all of this happens because of SPA, now it's a single page, no reloading of page as we are not using `<a>` tag now. If left unchecked, all these can blow the code. All of this can be cleared in ComponentWillUnmount. The same behavior will be seen if we write like below
+useEffect(()=>{
+  setInterval(()=>{
+    console.log('India');
+  },1000);
+},[]);
+To tackle this, we can return a function from useEffect() and it is called when we are unmounting the component like below
+useEffect(()=>{
+  setInterval(()=>{
+    console.log('India');
+  },1000);
+
+  return ()=>{
+    // runs when component unmounts
+  };
+},[]);
+
+52. Why can't we use async in useEffect like
+useEffect(async ()=>{
+  // ERROR
+},[]);
