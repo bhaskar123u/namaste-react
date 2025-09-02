@@ -1,22 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { MENU_API } from "../common/constants";
 import FoodItemCard from "./FoodItemCard";
+import useRestaurantMenu from "../hooks/useRestaurantMenu";
 
 const RestaurantMenuCard = () => {
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
-  // runs once
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
+  // const [restaurantMenu, setRestaurantMenu] = useState(null);
   const { resId } = useParams();
 
-  async function fetchMenu() {
-    let data = await fetch(MENU_API + resId);
-    data = await data.json();
-    setRestaurantMenu(data);
-  }
+  // customHook
+  const restaurantMenu = useRestaurantMenu(resId);
 
   // ideally until everything is loaded, we should load a shimmer
   if (restaurantMenu === null) return <></>;
@@ -46,7 +38,6 @@ const RestaurantMenuCard = () => {
       .map((menu) => {
         return menu?.card?.card;
       });;
-  console.log("foodMenu ->", foodMenu);
 
   return (
     <div className="menu-container">

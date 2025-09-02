@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SearchAndFilters from "./SearchAndFilters";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Body = () => {
   const [finalRestaurantData, setFinalRestaurantData] = useState([]);
@@ -53,6 +54,10 @@ const Body = () => {
     setRestaurantData(list);
   }, [finalRestaurantData, topRatedFilterActive, searchText]);
 
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return <p>Looks like you are offline, check internet</p>;
+  
   // JSX
   return (
     <div className="body">

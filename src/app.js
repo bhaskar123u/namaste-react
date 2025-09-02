@@ -1,12 +1,15 @@
+import { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"; // we need routing configuration
 import About from "./components/About";
 import Body from "./components/Body";
-import Header from "./components/Header";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // we need routing configuration
+import Header from "./components/Header";
 import RestaurantMenuCard from "./components/RestaurantMenuCard";
 
+// lazy loading
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
   return (
@@ -32,6 +35,16 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={
+            <h1>loading from suspense...</h1>
+          }>
+            <Instamart />
+          </Suspense>
+        ),
+      },
+      {
         path: "/about",
         element: <About />,
         errorElement: <Error />,
@@ -44,11 +57,11 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId", // :resId - dynamic
         element: <RestaurantMenuCard />,
-        errorElement: <Error />
-      }
+        errorElement: <Error />,
+      },
     ],
-    errorElement: <Error />
-  }
+    errorElement: <Error />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

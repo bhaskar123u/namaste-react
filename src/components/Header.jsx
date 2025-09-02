@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Header = () => {
   // variables and state variables
@@ -13,6 +14,8 @@ const Header = () => {
       setLoginKeyword('Login');
   }
 
+  const userOnline = useOnlineStatus();
+
   // JSX
   return (
     <div className="header">
@@ -23,8 +26,12 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          {/* <li>Online Status: {userOnline ? "🟢" : "🔴"}</li> */}
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/instamart">InstaMart</Link>
           </li>
           <li>
             <Link to="/about">About Us</Link>

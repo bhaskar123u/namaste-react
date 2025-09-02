@@ -187,3 +187,11 @@ useEffect(()=>{
 useEffect(async ()=>{
   // ERROR
 },[]);
+
+53. Custom Hooks - Hooks are nothing but a utility function. If the function starts with 'use...', react sees it as a hook. First try to finalise the input and output of the hook.
+
+54. If all of our js file is bundled into a single .js file, it will be huge in size(can be seen in network tab). So we make smaller bundles and this is known as CHUNKING / CODE-SPLITTING / DYNAMIC BUNDLING / LAZY LOADING. But keep in mind that a bundle should have enough code for a feature as well as maintaining the file size, it should not be so heavy that browsers take a lot of time to load them.
+
+55. Now when we click on InstaMart from header and checks the network tab, we see that a different js file loads for Instamart. Note that this file has all code for instamart verticle and is different from main vertical. All this is done because we are loading the component in a lazy way.
+
+56. Sometimes what happens it when we click on Instamart, the code for instamart starts loading, meanwhile react tries to render the component and it finds the code to be not present. At that point is suspends the loading and throws error. We can use 'Suspense' component for that.

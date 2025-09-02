@@ -22,13 +22,11 @@ class UserClassComponent extends Component {
       userBio: bio,
       image: avatar_url
     });
-    console.log('this.state in componentDidMount',this.state);
   }
 
   // returns a JSX -> converted into HTML and rendered in web page
   render() {
     const { userName, userCompany, userBio, totalCompanySwitched, image } = this.state;
-    console.log("this.state in render", this.state);
     return (
       <div className="user-card">
         <p>Name: {userName}</p>
