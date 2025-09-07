@@ -232,3 +232,28 @@ Read here - https://react.dev/learn/sharing-state-between-components#lifting-sta
 
 64. Props drilling - Data flows one way e.g., grandparent component - parent1 component - child1 component
 all of these will be passed in similar order as - `<ParentComponent dummy={dummy}>`, similarly it will be passed along. But this is not ideal way, if we want to send data from top hierarchy to deep down(say 10 levels), it might take a lot of code. SOLUTION - useContext() : Consider it as a global object that is accessible at any level at any layer. Let's say we are building dark/light theme button, that theme information we can put in context and it can be picked from there before loading every page, we can apply that.
+
+65. const UserContext = createContext(); This UserContext object has two important properties:
+UserContext.Provider → used to provide values
+UserContext.Consumer → used to consume values (older way, before hooks)
+If you don’t assign it to a variable (UserContext here), you’d lose the reference and couldn’t use it later. In functional component, we use useContext() hook to read data e.g., assuming we are exporting the context data from MyContext.js as
+import { createContext } from "react";
+export default createContext({
+    firstName: "Bhaskar"
+});
+--------------------------------------------------------------------------------
+Now we have to read that data as follow, assuming we have imported the MyContext
+const contextData = useContext(MyContext);
+const firstName = contextData?.firstName;
+...
+In class based component we don't have hooks so there is a different way to read context data - `<div><UserContext.Consumer> {(data) => console.log(data)} </UserContext.Consumer></div>`, this data is the context data. So there are two ways to read context data.
+
+66. Write new data in context - ContextProvider e.g.,
+...
+export default UserContext = createContext({});
+...
+This will be used as follows
+`<UserContext.Provider value={{some_data}}> any component/HTML tag wrapped here will have this access to some_data </UserContext.Provider>`
+We can use provider for a specific section also, we can create multiple context. So eventually if the component or any HTML structure is not wrapped inside Provider, it will use the default value. Else if it is wrapped in some specific provider, new value will be used.
+
+67. useNavigate(), useParams() are hooks from react-router-dom, that gives you a different functionalities. Using useNavigate() you can call to imperatively change the URL (navigate) in your code.
