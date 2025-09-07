@@ -1,6 +1,7 @@
 // Higher-Order Component which wraps incoming component
 
 const Playground = (SomeComponent) => {
+
   return function WithPlayground(props) {
     return (
       <>

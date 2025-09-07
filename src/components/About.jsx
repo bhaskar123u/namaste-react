@@ -1,6 +1,5 @@
-import User from "./User";
-import UserClassComponent from "./UserClassComponent";
 import { Component } from "react";
+import UserClassComponent from "./UserClassComponent";
 
 // this is a parent class component to UserClassComponent
 class About extends Component {

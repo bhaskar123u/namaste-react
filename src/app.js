@@ -1,14 +1,15 @@
 // app.js
-import { lazy, Suspense } from "react";
+import { Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import MyContext from "./common/MyContext";
 import About from "./components/About";
 import Body from "./components/Body";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Header from "./components/Header";
-import RestaurantMenuCard from "./components/RestaurantMenuCard";
 import Playground from "./components/Playground";
+import RestaurantMenuCard from "./components/RestaurantMenuCard";
 import TestComponent from "./components/TestComponent";
 
 // const Playground = lazy(() => import("./components/Playground"));
@@ -16,16 +17,34 @@ import TestComponent from "./components/TestComponent";
 // Create the enhanced component once
 const PlaygroundWrappedComponent = Playground(TestComponent);
 
-const AppLayout = () => (
-  <div className="page">
-    <div className="container">
-      <Header />
-      <Outlet />
-    </div>
-  </div>
-);
+const AppLayout = () => {
+  // lifting the state up, this component is part of body and it will be set from action event of a button in header.
+  const [modalOn, setModalOn] = useState(false);
+  const [loggedInUserName, setLoggedInUserName] = useState(null);
+  const [pendingPath, setPendingPath] = useState(null);
 
-// routes list unchanged
+  return (
+    <MyContext.Provider
+      value={{
+        modalOn,
+        setModalOn,
+        loggedInUserName,
+        setLoggedInUserName,
+        pendingPath,
+        setPendingPath
+      }}
+    >
+      <div className="page">
+        <div className="container">
+          <Header />
+          <Outlet />
+        </div>
+      </div>
+    </MyContext.Provider>
+  );
+};
+
+// routes list config
 const routes = [
   {
     path: "/",
@@ -36,7 +55,7 @@ const routes = [
         path: "/playground",
         element: (
           <Suspense fallback={<h1>loading from suspense...</h1>}>
-            <PlaygroundWrappedComponent firstName="Bhaskar" lastName="Sharan"/>
+            <PlaygroundWrappedComponent firstName="Bhaskar" lastName="Sharan" />
           </Suspense>
         ),
       },
@@ -52,7 +71,6 @@ const routes = [
   },
 ];
 
-// ✅ Use basename only in production (Parcel sets NODE_ENV)
 const basename = process.env.NODE_ENV === "production" ? "/namaste-react" : "/";
 
 const router = createBrowserRouter(routes, { basename });

@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import FoodItemCard from "./FoodItemCard";
-import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import { starRatingIcon } from "../common/constants";
+import useRestaurantMenu from "../hooks/useRestaurantMenu";
+import FoodItemCard from "./FoodItemCard";
+import { useContext } from "react";
+import MyContext from "../common/MyContext";
 
 const RestaurantMenuCard = () => {
-  // const [restaurantMenu, setRestaurantMenu] = useState(null);
   const { resId } = useParams();
-
+  const { loggedInUserName } = useContext(MyContext);
   // customHook
   const restaurantMenu = useRestaurantMenu(resId);
 
@@ -32,13 +32,16 @@ const RestaurantMenuCard = () => {
     restaurantMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
       ?.filter((menu) => {
         return (
-          (menu?.card?.card?.["@type"] ===
-            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") && (menu.card.card.itemCards.length > 0)
+          menu?.card?.card?.["@type"] ===
+            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" &&
+          menu.card.card.itemCards.length > 0
         );
       })
       .map((menu) => {
         return menu?.card?.card;
-      });;
+      });
+
+  if (loggedInUserName === null) return <></>;
 
   return (
     <div className="menu-container">

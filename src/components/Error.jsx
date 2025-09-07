@@ -1,4 +1,3 @@
-import Header from "./Header";
 import { useRouteError } from "react-router";
 
 const Error = () => {
