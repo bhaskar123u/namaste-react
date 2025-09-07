@@ -6,3 +6,5 @@ export const MENU_API =
 
 export const RESTAURANT_MENU_IMAGE_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
+
+export const starRatingIcon = new URL("../resources/star.png", import.meta.url).href;

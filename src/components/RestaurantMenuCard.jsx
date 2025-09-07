@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import FoodItemCard from "./FoodItemCard";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
+import { starRatingIcon } from "../common/constants";
 
 const RestaurantMenuCard = () => {
   // const [restaurantMenu, setRestaurantMenu] = useState(null);
@@ -50,7 +51,10 @@ const RestaurantMenuCard = () => {
         {/* restaurant other details (rating, food-type, sla) */}
         <div className="restaurant-other-details">
           <p className="rating">
-            ⭐️{rating} ({totalRating}) • Rs({costForTwo})
+            <img src={starRatingIcon} alt="" className="star-icon" />
+            <span>
+              {rating} ({totalRating}) • Rs({costForTwo})
+            </span>
           </p>
           <p className="food-type">{cuisines}</p>
           <p className="sla-delivery">
@@ -64,7 +68,10 @@ const RestaurantMenuCard = () => {
             {/* to be added for all lists */}
             {foodMenu.map((menu) => {
               return (
-                <div className="menu-list-category-container" key={menu.categoryId}>
+                <div
+                  className="menu-list-category-container"
+                  key={menu.categoryId}
+                >
                   <hr className="horizontal-line" />
                   <div className="menu-list-items">
                     <p className="menu-list-item-tag">
@@ -80,7 +87,6 @@ const RestaurantMenuCard = () => {
                 </div>
               );
             })}
-
           </div>
         </div>
       </div>

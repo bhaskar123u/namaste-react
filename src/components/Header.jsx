@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import MyContext from "../common/MyContext";
 
 const Header = () => {
   // variables and state variables
   const logo = new URL("../resources/food-app-logo.png", import.meta.url).href;
   const [loginKeyword, setLoginKeyword] = useState('Login');
+  const contextData = useContext(MyContext);
 
   function loginButtonHandler() {
+    const firstName = contextData?.firstName;
     if (loginKeyword === 'Login')
-      setLoginKeyword('Logout');
+      setLoginKeyword(firstName);
     else
       setLoginKeyword('Login');
   }
@@ -31,7 +34,7 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/instamart">InstaMart</Link>
+            <Link to="/playground">Playground</Link>
           </li>
           <li>
             <Link to="/about">About Us</Link>

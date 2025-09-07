@@ -195,3 +195,40 @@ useEffect(async ()=>{
 55. Now when we click on InstaMart from header and checks the network tab, we see that a different js file loads for Instamart. Note that this file has all code for instamart verticle and is different from main vertical. All this is done because we are loading the component in a lazy way.
 
 56. Sometimes what happens it when we click on Instamart, the code for instamart starts loading, meanwhile react tries to render the component and it finds the code to be not present. At that point is suspends the loading and throws error. We can use 'Suspense' component for that.
+
+57. Tailwindcss - Parcel needs postcss to read and understand tailwindcss. We can apply mutiple classes as follow - `<button className={px-4 py-2 rounded ${isPrimary ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}}>Click me</button>`
+
+58. Higher Order Function - A component that takes a component as input, enhances it and returns it back for e.g.,
+const HigherOrderFunction = (Component) => {
+  // returns another component which is nothing but a function
+  return () => {
+    // todo on Component
+  }
+};
+A HOC must be called with a component to produce an enhanced component, then you render that enhanced component.
+const NewHOCComponent = HigherOrderFunction(OldComponent);
+
+You don't render HOC component directly. `<HigherOrderFunction />` -> NOT TO BE DONE.
+
+We can do N number of things in HOC such as changing css styles and all sorts of cross cutting concerns. HOC doesn't mutate old component. HOC returns a new React component (NewComponent) that new component may wrap, replace, or conditionally render WrappedComponent. HOCs generalize conditional rendering (and more) so that logic is reusable and not tied to a single component. If the condition is specific to that component (e.g., “Show veg-only filter if restaurant supports it”), do conditional rendering inside. If the condition is cross-cutting (e.g., “Show skeleton while fetching,” “Protect route if user not logged in”), use a HOC (or hook).
+
+59. The “new component” can:
+1. Wrap the old one in extra elements:
+  `<div className="wrapper"> <WrappedComponent {...props} /> </div>`
+2. Decide when to render it:
+  {props.show && `<WrappedComponent {...props} />`}
+3. Pass new or modified props down:
+  `<WrappedComponent {...props} theme="dark" />`
+But the inner component’s structure is preserved unless the HOC deliberately changes the props or styling. We can inject className or complete style itself from HOC and it will be applied at Child component level.
+
+60. React Dev Tools(Chrome extension) - Explore Profiler and Components
+
+61. State Lifting - State = data you keep in a component using useState e.g., const [count, setCount] = useState(0);.Sometimes two or more child components need to use the same piece of data. Instead of keeping that state separately in each child, you “lift” it up into their common parent, so both children can share it.
+
+62. Controlled component && Uncontrolled component - Component which rely on their parent for any state are called uncontrolled component. Example - Let's say we have 5 accordion which expands and collapse. Now expanding any item might collapse another, let's say we have Accordion 1, A2, A3, A4, A5. Now assume A2 is expanded. User expands A3, this leads to A2 being collapse. Each of these accordion won't know the state of another, so as to modify their own state. Hence we keep the state at parent level, which passes all these data to children.
+
+63. We have to manage the state variable at parent level from children. Let's say we have a showIndex variable at parent level and using this variable the accordion is expanded. If the showIndex = 0, A1 is expanded and rest all are collapsed. Now assume A2 is expanded right now, and user clicks on A3, so showIndex at parent level should become 3. We have to update the state variable declared in parent component from childrens -> This can be done by passing the setShowIndex() function from parent to child as follow `<ChildComponent setShowIndex={() => setShowIndex(index)}>` assuming setShowIndex(index) is called in child within some eventHandler.
+Read here - https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example
+
+64. Props drilling - Data flows one way e.g., grandparent component - parent1 component - child1 component
+all of these will be passed in similar order as - `<ParentComponent dummy={dummy}>`, similarly it will be passed along. But this is not ideal way, if we want to send data from top hierarchy to deep down(say 10 levels), it might take a lot of code. SOLUTION - useContext() : Consider it as a global object that is accessible at any level at any layer. Let's say we are building dark/light theme button, that theme information we can put in context and it can be picked from there before loading every page, we can apply that.

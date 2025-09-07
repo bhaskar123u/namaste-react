@@ -1,4 +1,5 @@
 import { CDN_URL } from "../common/constants";
+import { starRatingIcon } from "../common/constants";
 
 const RestaurantCard = ({ props }) => {
   const {
@@ -34,7 +35,8 @@ const RestaurantCard = ({ props }) => {
           {previewCuisinesArray(cuisines)}
         </p>
         <p className="res-card-details avgRating">
-          {avgRating} ⭐️ by {totalRatingsString} users
+          <img src={starRatingIcon} alt="" className="star-icon" />
+          <span className="rating-val">{avgRating}</span> by{" "}{totalRatingsString} users
         </p>
         <p className="res-card-details costForTwo">{costForTwo}</p>
         <p className="res-card-details deliveryTime">{sla.deliveryTime} mins</p>

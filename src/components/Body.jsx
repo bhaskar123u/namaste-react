@@ -19,6 +19,7 @@ const Body = () => {
       json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants || [];
     setFinalRestaurantData(list);
+    // console.log("restaurants list inside body fetchData", list);
     setRestaurantData(list);
   }
 

@@ -1,3 +1,6 @@
+@import "tailwindcss";
+
+
 /* ============ Base / Reset ============ */
 * { box-sizing: border-box; }
 
@@ -167,6 +170,11 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   align-items: stretch;   /* stretch cards to equal height */
 }
 
+.star-icon {
+  width: 15px;
+  height: 15px;
+}
+
 /* Link wrapper for card */
 .card-link {
   display: block;
@@ -184,8 +192,7 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   padding:10px;
   border:0.5px solid var(--soft);
   transition: transform .18s ease, box-shadow .18s ease;
-
-  height: 100%;                /* full height inside grid */
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -197,7 +204,7 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
 /* Card image */
 .res-logo{
   width:100%;
-  aspect-ratio: 16 / 9;         /* consistent image height */
+  aspect-ratio: 16 / 9;
   object-fit:cover;
   border:1px solid var(--border);
   border-radius:10px;
@@ -218,6 +225,26 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   margin:8px 0 6px;
   font-weight:700;
   font-size:18px;
+}
+
+p.res-card-details.avgRating {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 6px;
+  margin: 0;
+  line-height: 1.3;
+}
+
+p.res-card-details.avgRating .star-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  display: block;
+}
+
+p.res-card-details.avgRating .rating-val {
+  font-weight: 600;
 }
 
 .res-card-details.cuisines,
@@ -286,6 +313,14 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   box-shadow: 5px 5px 5px grey;
 }
 
+.restaurant-other-details .rating {
+  display: flex;
+}
+
+.restaurant-other-details .rating .star-icon{
+  margin: 5px;
+}
+
 .restaurant-other-details p {
   margin: 5px auto;
 }
@@ -342,6 +377,14 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
   font-size: medium;
 }
 
+.food-item-card-rating {
+  display: flex;
+  gap: 3px;
+}
+.food-item-card-rating .star-icon {
+  margin: 5px 0px;
+}
+
 .food-item-card-description {
   color: grey;
 }
@@ -378,6 +421,11 @@ button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
 .update-course-count-btn:hover {
   color: green;
   background-color: lightblue
+}
+
+.hoc-child-component {
+  color: red;
+  margin: 0px 50px;
 }
 
 /* ============ Responsive Tweaks ============ */

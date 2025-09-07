@@ -8,8 +8,13 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Header from "./components/Header";
 import RestaurantMenuCard from "./components/RestaurantMenuCard";
+import Playground from "./components/Playground";
+import TestComponent from "./components/TestComponent";
 
-const Instamart = lazy(() => import("./components/Instamart"));
+// const Playground = lazy(() => import("./components/Playground"));
+
+// Create the enhanced component once
+const PlaygroundWrappedComponent = Playground(TestComponent);
 
 const AppLayout = () => (
   <div className="page">
@@ -28,10 +33,10 @@ const routes = [
     children: [
       { path: "/", element: <Body /> },
       {
-        path: "/instamart",
+        path: "/playground",
         element: (
           <Suspense fallback={<h1>loading from suspense...</h1>}>
-            <Instamart />
+            <PlaygroundWrappedComponent firstName="Bhaskar" lastName="Sharan"/>
           </Suspense>
         ),
       },
