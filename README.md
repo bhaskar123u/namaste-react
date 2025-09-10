@@ -257,3 +257,37 @@ This will be used as follows
 We can use provider for a specific section also, we can create multiple context. So eventually if the component or any HTML structure is not wrapped inside Provider, it will use the default value. Else if it is wrapped in some specific provider, new value will be used.
 
 67. useNavigate(), useParams() are hooks from react-router-dom, that gives you a different functionalities. Using useNavigate() you can call to imperatively change the URL (navigate) in your code.
+
+68. Zustand/Redux - Libraries to manage state.
+
+69. Why use redux - For large scale applications, redux provide lot of features for state management. Read here - https://redux.js.org/tutorials/essentials/part-1-overview-concepts
+
+70. React Redux - Bridge between react and redux(https://react-redux.js.org/tutorials/quick-start). Redux Toolkit(RTK) - Newer way of writing redux(https://redux-toolkit.js.org/tutorials/overview).
+
+71. Redux store - A very big JS Object located at a central place, this will be accessed by any component. Redux store have slices for better partitioning of redux store (User slice, Cart slice, Theme slice etc). Now let's say we have add button on each item, when clicked we should add that food item in Cart but we cannot do it directly.
+WHEN WE CLICK ON ADD BUTTON, IT DISPATCHES AN ACTION, IT CALLS A FUNCTION which will modify the appropriate slice(cart slice in this case). THIS FUNCTION IS CALLED REDUCER.
+![Write data to redux](./other/Redux_Write.jpeg)
+
+72. Read Redux Data - We use SELECTOR(hook). Selector reads data from store and modify the react component. This is called subscribing to the store. It is in sync with store, if the data in store changes, the component data changes.
+![Read data to redux](./other/Redux_Read.jpeg)
+
+73. Final Redux - ![Redux](./other/Redux.jpeg)
+
+74. onClick = { addItem } VS onClick = { () => addItem(item) } VS onClick = { addItem(item) }
+
+  1. onClick={addItem}
+  Here you’re passing the function reference. React will call addItem(event) when the click happens, and the click event object will be passed automatically. Correct when your handler doesn’t need extra arguments.
+
+  2. onClick={() => addItem(item)}
+  Here you’re passing an arrow function. React calls the arrow on click, and inside that you call addItem(item). Correct when you want to pass custom data (like item) instead of the default click event.
+
+  3. onClick={addItem(item)}
+  ❌ This is wrong in most cases. Why? Because it calls addItem(item) immediately during render, not a callback when the click happens. The result of that function call (likely undefined) is what React assigns to onClick. So the handler runs on render and not on click → bug.
+
+  Analogy
+  Think of onClick={...} as “what should React do later when clicked”. onClick={addItem} → “when clicked, call addItem with the event”. onClick={() => addItem(item)} → “when clicked, run this arrow, which will call addItem with my custom argument”. onClick={addItem(item)} → “call addItem(item) right now, and whatever it returns will be used later” → usually not what you want.
+
+  ✅ Rule of thumb
+  No args needed → onClick={handler}. Args needed → onClick={() => handler(arg)}
+
+75. 

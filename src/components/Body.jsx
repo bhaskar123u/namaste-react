@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MyContext from "../common/MyContext";
-import { RESTAURANT_LIST_URL } from "../common/constants";
+import { RESTAURANT_LIST_URL } from "../common/Constants";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import RestaurantCard from "./RestaurantCard";
 import SearchAndFilters from "./SearchAndFilters";

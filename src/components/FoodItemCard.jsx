@@ -1,13 +1,25 @@
-import { RESTAURANT_MENU_IMAGE_CDN_URL } from "../common/constants";
-import { starRatingIcon } from "../common/constants";
+import { RESTAURANT_MENU_IMAGE_CDN_URL } from "../common/Constants";
+import { starRatingIcon } from "../common/Constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux-slices/CartSlice";
 
 const FoodItemCard = ({ props }) => {
-  const { name, price, ratings, description, imageId, itemAttribute, defaultPrice } =
-    props.card.info;
+  const {
+    name,
+    price,
+    ratings,
+    description,
+    imageId,
+    itemAttribute,
+    defaultPrice,
+  } = props.card.info;
   const isNonVeg = itemAttribute.vegClassifier === "NONVEG" ? true : false;
 
-  function addButtonClicked() {
-    console.log('add button clicked');
+  const dispatch = useDispatch();
+  function addButtonClicked(name) {
+    // dispatch an action which will call a reducer function
+    console.log(name);
+    dispatch(addItem(name));
   }
 
   return (
@@ -31,7 +43,8 @@ const FoodItemCard = ({ props }) => {
             <p className="food-item-card-rating">
               <img src={starRatingIcon} alt="" className="star-icon" />{" "}
               <span>
-                {ratings.aggregatedRating.rating} ({ratings.aggregatedRating.ratingCountV2})
+                {ratings.aggregatedRating.rating} (
+                {ratings.aggregatedRating.ratingCountV2})
               </span>
             </p>
           ) : (
@@ -46,7 +59,10 @@ const FoodItemCard = ({ props }) => {
           className="food-item-image"
           alt="food-item-image"
         />
-        <button className="food-item-add-btn" onClick={addButtonClicked}>
+        <button
+          className="food-item-add-btn"
+          onClick={() => addButtonClicked(props.card.info)}
+        >
           ADD
         </button>
       </div>

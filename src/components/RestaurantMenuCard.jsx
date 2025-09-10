@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { starRatingIcon } from "../common/constants";
+import { starRatingIcon } from "../common/Constants";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import FoodItemCard from "./FoodItemCard";
 import { useContext } from "react";

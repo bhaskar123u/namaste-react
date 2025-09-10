@@ -81,7 +81,7 @@ img {
 
 .welcome-text-header {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  font-size: medium;
 }
 
 .nav-items {
@@ -92,7 +92,7 @@ img {
   text-decoration: none;
   color: inherit;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  font-size: medium;
 }
 
 .nav-items > ul {
@@ -106,8 +106,9 @@ img {
 
 .nav-items > ul > li {
   padding: 8px 12px;
-  font-size: clamp(14px, 1.6vw, 20px);
+  font-size: medium;
   border-radius: 10px;
+  cursor: pointer;
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease,

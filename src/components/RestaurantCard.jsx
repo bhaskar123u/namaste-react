@@ -1,5 +1,5 @@
-import { CDN_URL } from "../common/constants";
-import { starRatingIcon } from "../common/constants";
+import { CDN_URL } from "../common/Constants";
+import { starRatingIcon } from "../common/Constants";
 
 const RestaurantCard = ({ props }) => {
   const {
@@ -16,7 +16,7 @@ const RestaurantCard = ({ props }) => {
     // join all with comma
     let str = arr.join(", ");
     if (str.length > 40) {
-      str = str.substring(0, str.lastIndexOf(','));
+      str = str.substring(0, str.lastIndexOf(","));
       str = str.substring(0, 40) + "...";
     }
     return str;
@@ -36,7 +36,8 @@ const RestaurantCard = ({ props }) => {
         </p>
         <p className="res-card-details avgRating">
           <img src={starRatingIcon} alt="" className="star-icon" />
-          <span className="rating-val">{avgRating}</span> by{" "}{totalRatingsString} users
+          <span className="rating-val">{avgRating}</span> by{" "}
+          {totalRatingsString} users
         </p>
         <p className="res-card-details costForTwo">{costForTwo}</p>
         <p className="res-card-details deliveryTime">{sla.deliveryTime} mins</p>

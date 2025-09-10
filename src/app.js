@@ -1,10 +1,12 @@
-// app.js
 import { Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import AppStore from "./common/AppStore";
 import MyContext from "./common/MyContext";
 import About from "./components/About";
 import Body from "./components/Body";
+import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Header from "./components/Header";
@@ -24,23 +26,25 @@ const AppLayout = () => {
   const [pendingPath, setPendingPath] = useState(null);
 
   return (
-    <MyContext.Provider
-      value={{
-        modalOn,
-        setModalOn,
-        loggedInUserName,
-        setLoggedInUserName,
-        pendingPath,
-        setPendingPath
-      }}
-    >
-      <div className="page">
-        <div className="container">
-          <Header />
-          <Outlet />
+    <Provider store={AppStore}>
+      <MyContext.Provider
+        value={{
+          modalOn,
+          setModalOn,
+          loggedInUserName,
+          setLoggedInUserName,
+          pendingPath,
+          setPendingPath,
+        }}
+      >
+        <div className="page">
+          <div className="container">
+            <Header />
+            <Outlet />
+          </div>
         </div>
-      </div>
-    </MyContext.Provider>
+      </MyContext.Provider>
+    </Provider>
   );
 };
 
@@ -64,6 +68,11 @@ const routes = [
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenuCard />,
+        errorElement: <Error />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
         errorElement: <Error />,
       },
     ],
