@@ -386,6 +386,19 @@ const CartSummary = () => {
 ![jest init](./other/jest-init.png)
 Apart from it, we have to install jest-environment-jsdom library(npm i -D jest-environment-jsdom)(https://testing-library.com/docs/react-testing-library/setup#jest-28).
 
+81. Jest tracks all files under the folder __test__ any .js/.ts files will be considered as test files. Or create a file with this name - Header.test.js, Header.test.ts, Header.spec.js, Header.spec.ts - all will be considered as testing file.
+
+82. Install - npm i -D @babel/preset-react -> to make jsx work in test cases and add in babel config.
+```javascript
+module.exports = {
+    presets: [
+        ['@babel/preset-env', { targets: { node: 'current' } }],
+        ['@babel/preset-react', { runtime: 'automatic' }],
+    ],
+};
+```
+Babel preset is helping react code to be converted into normal HTML code. We also need to install @testing-library/jest-dom
+
 Summary :
   - Install React testing library
   - Install Jest
@@ -394,5 +407,9 @@ Summary :
   - Configure Parcel config file to disable default babel transpilation
   - Add Jest config file(npm init jest@latest)
   - Install jsdom library
+  - Install @babel/preset-react
+  - Include @babel/preset-react inside babel config
+  - Install @testing-library/jest-dom -> npm i -D @testing-library/jest-dom && npm i -D @types/jest
+  - Add jsconfig.json
 
-81. 
+83. We can group test cases, using describe. A single group can test a single thing.

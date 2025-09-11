@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "jsx": "react-jsx", // <-- key line (use "react" if TS < 4.1)
+    "baseUrl": ".",
+    "types": ["jest", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "**/*.spec.js"]
+}
