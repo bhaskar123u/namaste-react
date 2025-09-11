@@ -21,9 +21,6 @@ const Header = () => {
 
   // subscribing to the store using a selector, whenever store items modify, the cartItems modify
   const cartItems = useSelector((store) => store.cart.items);
-  useEffect(() => {
-    console.log("cartItems", cartItems);
-  }, [cartItems]);
 
   function loginButtonHandler() {
     if (btnText === "Login") {

@@ -112,18 +112,22 @@ SERVER SIDE ROUTING - User clicked on About Us page, then browsers make a call t
 As soon as the JSX stars rendering and react sees that a class based component is called, it immediately starts loading/instantiating it and then constructor() is called followed by render().
 
 47. We can declare state variables in constructor for e.g.,
+```javascript
 constructor(props) {
     super(props);
     this.state = {
       courseCompletedCount: 1,
     };
 }
+```
 If you write super(props), React passes the props up to the React.Component constructor, then this.props is set up properly inside your component.
 
 48. We can set state using this.setState() for e.g., assuming courseCompletedCount is a state variable inside constructor
+```javascript
 this.setState({
     courseCompletedCount: this.state.courseCompletedCount + 1
 });
+```
 The component is re-rendered and UI is updated. The state variable(this.state) is a big object, this.setState only updates what is needed, other variables are not updated. When setState() is called, the updating part of react life cycle starts.
 
 49. Life cycle of class based component - constructor -> render(DOM update) -> componentDidMount
@@ -167,12 +171,13 @@ commit - actual update of DOM
 50. Use of componentDidMount - to make api calls, let the component load with basic details(all html tags), react can make quick re-rendering so once we have the component ready we can fill the data. No need to wait for the api to send data. So basically useEffect(() => {}) is equivalent to componentDidMount and useEffect(() => {},[]) is equivalent to componentDidUpdate.
 
 51. Let's say we have a setInterval(()=>{console.log('India')},1000); which is printing India in console after every 1 second and this is added in componentDidMount. Now even if we goto different page, this interval will still be alive and let's say this interval was added in "/about" page component, it will still be active if we visit "/contact" and everytime we will visit "/about", an extra interval will be started 😂 - all of this happens because of SPA, now it's a single page, no reloading of page as we are not using `<a>` tag now. If left unchecked, all these can blow the code. All of this can be cleared in ComponentWillUnmount. The same behavior will be seen if we write like below
+```javascript
 useEffect(()=>{
   setInterval(()=>{
     console.log('India');
   },1000);
 },[]);
-To tackle this, we can return a function from useEffect() and it is called when we are unmounting the component like below
+// To tackle this, we can return a function from useEffect() and it is called when we are unmounting the component like below
 useEffect(()=>{
   setInterval(()=>{
     console.log('India');
@@ -182,11 +187,36 @@ useEffect(()=>{
     // runs when component unmounts
   };
 },[]);
+```
 
 52. Why can't we use async in useEffect like
+```javascript
 useEffect(async ()=>{
   // ERROR
 },[]);
+```
+useEffect expects your callback to either return nothing or return a cleanup function.
+But if you mark it async, the function always returns a Promise, and React doesn’t know what to do with that. Correct way is to use async logic inside a function
+```javascript
+useEffect(() => {
+  async function fetchData() {
+    const resp = await fetch("/api/data");
+    const json = await resp.json();
+    console.log(json);
+  }
+
+  fetchData();
+}, []);
+
+// OR use a IIFE
+useEffect(() => {
+  (async () => {
+    const resp = await fetch("/api/data");
+    const json = await resp.json();
+    console.log(json);
+  })();
+}, []);
+```
 
 53. Custom Hooks - Hooks are nothing but a utility function. If the function starts with 'use...', react sees it as a hook. First try to finalise the input and output of the hook.
 
@@ -199,12 +229,14 @@ useEffect(async ()=>{
 57. Tailwindcss - Parcel needs postcss to read and understand tailwindcss. We can apply mutiple classes as follow - `<button className={px-4 py-2 rounded ${isPrimary ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}}>Click me</button>`
 
 58. Higher Order Function - A component that takes a component as input, enhances it and returns it back for e.g.,
+```javascript
 const HigherOrderFunction = (Component) => {
   // returns another component which is nothing but a function
   return () => {
     // todo on Component
   }
 };
+```
 A HOC must be called with a component to produce an enhanced component, then you render that enhanced component.
 const NewHOCComponent = HigherOrderFunction(OldComponent);
 
@@ -237,14 +269,18 @@ all of these will be passed in similar order as - `<ParentComponent dummy={dummy
 UserContext.Provider → used to provide values
 UserContext.Consumer → used to consume values (older way, before hooks)
 If you don’t assign it to a variable (UserContext here), you’d lose the reference and couldn’t use it later. In functional component, we use useContext() hook to read data e.g., assuming we are exporting the context data from MyContext.js as
+```javascript
 import { createContext } from "react";
 export default createContext({
     firstName: "Bhaskar"
 });
+```
 --------------------------------------------------------------------------------
 Now we have to read that data as follow, assuming we have imported the MyContext
+```javascript
 const contextData = useContext(MyContext);
 const firstName = contextData?.firstName;
+```
 ...
 In class based component we don't have hooks so there is a different way to read context data - `<div><UserContext.Consumer> {(data) => console.log(data)} </UserContext.Consumer></div>`, this data is the context data. So there are two ways to read context data.
 
@@ -290,4 +326,41 @@ WHEN WE CLICK ON ADD BUTTON, IT DISPATCHES AN ACTION, IT CALLS A FUNCTION which 
   ✅ Rule of thumb
   No args needed → onClick={handler}. Args needed → onClick={() => handler(arg)}
 
-75. 
+75. Be careful while subscribing to the redux store.
+```javascript
+const cart = useSelector((store) => store.cart)
+```
+Avoid this as we have subscribed to the whole cart store, everytime anything in this store changes, the whole component re-renders. Instead do a specific subscription such as
+```javascript
+const cartItems = useSelector((store) => store.cart.items);
+```
+Now let's say we have to show cart total, everytime something is added/subtracted, the cart total changes. Hence we would need to re-calculate. One way is that we have to write calculation logic inline but there is a better way, Solution - memoized selector. In a separate file we can write the following code
+```javascript
+import { createSelector } from "@reduxjs/toolkit";
+export const selectCartItems = (state) => state.cart.items;
+
+export const selectCartTotal = createSelector(
+  [selectCartItems],
+  (items) => items.reduce((sum, item) => sum + item.price * item.qty, 0)
+);
+```
+and then use it as follow
+```javascript
+import { useSelector } from "react-redux";
+import { selectCartTotal } from "./selectors";
+
+const CartSummary = () => {
+  const total = useSelector(selectCartTotal);
+
+  return (
+    <div>
+      <p>Total: ${total}</p>
+    </div>
+  );
+};
+```
+
+76. Redux uses Immer library to find the difference between previous and new state and helps maintain immutability of state. Read - https://redux-toolkit.js.org/usage/immer-reducers, https://immerjs.github.io/immer/
+![Immer](./other/Immer.png)
+
+77. Read - Redux Thunk and RTK Query (https://redux-toolkit.js.org/rtk-query/overview)

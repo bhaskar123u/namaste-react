@@ -41,8 +41,6 @@ const RestaurantMenuCard = () => {
         return menu?.card?.card;
       });
 
-  if (loggedInUserName === null) return <></>;
-
   return (
     <div className="menu-container">
       <div className="menu-card">

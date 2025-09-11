@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import MyContext from "../common/MyContext";
 import { RESTAURANT_LIST_URL } from "../common/Constants";
+import MyContext from "../common/MyContext";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import RestaurantCard from "./RestaurantCard";
 import SearchAndFilters from "./SearchAndFilters";
@@ -81,13 +81,14 @@ const Body = () => {
             to={`/restaurant/${res.info.id}`}
             className="card-link"
             key={res.info.id}
-            onClick={(e) => {
-              if (!loggedInUserName) {
-                e.preventDefault(); // ⛔ stop route change
-                setPendingPath(`/restaurant/${res.info.id}`); // set pending path, to navigate automatically after login
-                setModalOn(true); // 🔓 open login modal
-              }
-            }}
+            // onClick={(e) => {
+            //   // this prevents rendering of restaurant menu if the user is not logged in
+            //   if (!loggedInUserName) {
+            //     e.preventDefault(); // ⛔ stop route change
+            //     setPendingPath(`/restaurant/${res.info.id}`); // set pending path, to navigate automatically after login
+            //     setModalOn(true); // 🔓 open login modal
+            //   }
+            // }}
           >
             <RestaurantCard props={res.info} />
           </Link>

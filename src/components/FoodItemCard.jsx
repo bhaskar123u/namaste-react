@@ -2,6 +2,8 @@ import { RESTAURANT_MENU_IMAGE_CDN_URL } from "../common/Constants";
 import { starRatingIcon } from "../common/Constants";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux-slices/CartSlice";
+import MyContext from "../common/MyContext";
+import { useContext } from "react";
 
 const FoodItemCard = ({ props }) => {
   const {
@@ -14,9 +16,16 @@ const FoodItemCard = ({ props }) => {
     defaultPrice,
   } = props.card.info;
   const isNonVeg = itemAttribute.vegClassifier === "NONVEG" ? true : false;
+  const { loggedInUserName, setModalOn } = useContext(MyContext);
 
   const dispatch = useDispatch();
   function addButtonClicked(name) {
+    // This will only happen for loggedInUsers
+    if (loggedInUserName === null || loggedInUserName.length === 0) {
+      console.log('User trying to add items in cart but not loggedIn');
+      setModalOn(true);
+    }  
+
     // dispatch an action which will call a reducer function
     console.log(name);
     dispatch(addItem(name));
