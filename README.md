@@ -131,42 +131,52 @@ this.setState({
 The component is re-rendered and UI is updated. The state variable(this.state) is a big object, this.setState only updates what is needed, other variables are not updated. When setState() is called, the updating part of react life cycle starts.
 
 49. Life cycle of class based component - constructor -> render(DOM update) -> componentDidMount
-Condition 1 : Parent(Child)
-Parent constructor
-Parent render
-  Child constructor
-  Child render
-  Child ComponentDidMount
-Parent ComponentDidMount
 
-Condition 2 : Parent(Child1, Child2) -> here 2 different instances of Child are created
-Parent constructor
-Parent render
-  Child1 constructor
-  Child1 render
-  Child2 constructor
-  Child2 render
-  // react will batch render phases for all children for optimisation, before calling ComponentDidMount
-  // everything in render phase happens at VDOM (nothing but JS Object) level that is very passed
-  ------- DOM MANIPULATION STARTS -------
-  Child1 ComponentDidMount
-  Child2 ComponentDidMount
-  // react will batch commit phases for all children for optimisation, as DOM manipulation is the most expensive
-  // thing while updating a component
-Parent ComponentDidMount
+Condition 1 :
+- Parent(Child)
+- Parent constructor
+- Parent render
+  - Child constructor
+  - Child render
+  - Child ComponentDidMount
+- Parent ComponentDidMount
+
+Condition 2 : 
+- Parent(Child1, Child2) -> here 2 different instances of Child are created
+- Parent constructor
+- Parent render
+  - Child1 constructor
+  - Child1 render
+  - Child2 constructor
+  - Child2 render
+  - // react will batch render phases for all children for optimisation, before calling ComponentDidMount
+  - // everything in render phase happens at VDOM (nothing but JS Object) level that is very passed
+  - ------- DOM MANIPULATION STARTS -------
+  - Child1 ComponentDidMount
+  - Child2 ComponentDidMount
+  - // react will batch commit phases for all children for optimisation, as DOM manipulation is the most expensive
+  - // thing while updating a component
+- Parent ComponentDidMount
 
 Let's say we are updating something on UI
+- constructor -> 
+- render(DOM update) -> 
+- componentDidMount(only called once) -> 
+- if setState() is called -> 
+- render(DOM update) ->
+- componentDidUpdate ->
+- componentUnmount
 
-constructor -> render(DOM update) -> componentDidMount(only called once) -> if setState() is called -> render(DOM update) -> componentDidUpdate -> componentUnmount
-
-First mount cycle -> update cycle -> unmount cycle(when component is removed from UI)
+First mount cycle ->
+- update cycle ->
+- unmount cycle(when component is removed from UI)
 
 Refer - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 ![React Life Cycle](./other/react-life-cycle.png)
 
-render phase - constructor, render
-commit - actual update of DOM
+render phase -> constructor, render
+commit -> actual update of DOM
 
 50. Use of componentDidMount - to make api calls, let the component load with basic details(all html tags), react can make quick re-rendering so once we have the component ready we can fill the data. No need to wait for the api to send data. So basically useEffect(() => {}) is equivalent to componentDidMount and useEffect(() => {},[]) is equivalent to componentDidUpdate.
 
@@ -245,11 +255,11 @@ You don't render HOC component directly. `<HigherOrderFunction />` -> NOT TO BE 
 We can do N number of things in HOC such as changing css styles and all sorts of cross cutting concerns. HOC doesn't mutate old component. HOC returns a new React component (NewComponent) that new component may wrap, replace, or conditionally render WrappedComponent. HOCs generalize conditional rendering (and more) so that logic is reusable and not tied to a single component. If the condition is specific to that component (e.g., “Show veg-only filter if restaurant supports it”), do conditional rendering inside. If the condition is cross-cutting (e.g., “Show skeleton while fetching,” “Protect route if user not logged in”), use a HOC (or hook).
 
 59. The “new component” can:
-  a. Wrap the old one in extra elements:
+  - a. Wrap the old one in extra elements:
   `<div className="wrapper"> <WrappedComponent {...props} /> </div>`
-  b. Decide when to render it:
+  - b. Decide when to render it:
   {props.show && `<WrappedComponent {...props} />`}
-  c. Pass new or modified props down:
+  - c. Pass new or modified props down:
   `<WrappedComponent {...props} theme="dark" />`
 But the inner component’s structure is preserved unless the HOC deliberately changes the props or styling. We can inject className or complete style itself from HOC and it will be applied at Child component level.
 
@@ -309,13 +319,13 @@ WHEN WE CLICK ON ADD BUTTON, IT DISPATCHES AN ACTION, IT CALLS A FUNCTION which 
 
 74. onClick = { addItem } VS onClick = { () => addItem(item) } VS onClick = { addItem(item) }
 
-  a. onClick={addItem}
+  - a. onClick={addItem}
   Here you’re passing the function reference. React will call addItem(event) when the click happens, and the click event object will be passed automatically. Correct when your handler doesn’t need extra arguments.
 
-  b. onClick={() => addItem(item)}
+  - b. onClick={() => addItem(item)}
   Here you’re passing an arrow function. React calls the arrow on click, and inside that you call addItem(item). Correct when you want to pass custom data (like item) instead of the default click event.
 
-  c. onClick={addItem(item)}
+  - c. onClick={addItem(item)}
   ❌ This is wrong in most cases. Why? Because it calls addItem(item) immediately during render, not a callback when the click happens. The result of that function call (likely undefined) is what React assigns to onClick. So the handler runs on render and not on click → bug.
 
   Analogy
@@ -362,3 +372,27 @@ const CartSummary = () => {
 ![Immer](./other/Immer.png)
 
 77. Read - Redux Thunk and RTK Query (https://redux-toolkit.js.org/rtk-query/overview)
+
+78. Type of testing in React - Unit testing, Integration testing, E2E testing (dev testing is majorly 1 && 2)
+  - a. Unit testing - Test react component in isolation
+  - b. Integration testing - Testing integration of multiple components(when we write text in test search and the page loads all items related to that text, multiple component were involved in talking to each other)
+  - c. E2E testing - As soon as user lands on page till he leaves the page. Simulating user behaviour. Needs extra tools.
+  https://testing-library.com/docs/react-testing-library/intro/
+  https://jestjs.io/
+
+79. Setting up testing - install react testing library, jest, jest-babel depdencies and then configure babel.congig.js. Now parcel also uses babel internally and adding this babel.config.js will create issue. To avoid this we should change parcel config (https://parceljs.org/languages/javascript/#babel) -> to configure parcel config file(.parcelrc) to disable default babel transpilation. Run npm run test, if no error is seen, all installation upto here is successful.
+
+80. Writing jest configuration : npx init jest@latest -> new file(jest.config.js) will be created for jest for which some questions will be asked. jsdom -> A runtime env where the test cases will be executed. It parses and interacts with assembled HTML just like browsers. It give us features of browser. Let's say we are testing `<Header />`, so it will be created in jsdom.
+![jest init](./other/jest-init.png)
+Apart from it, we have to install jest-environment-jsdom library(npm i -D jest-environment-jsdom)(https://testing-library.com/docs/react-testing-library/setup#jest-28).
+
+Summary :
+  - Install React testing library
+  - Install Jest
+  - Install Babel dependencies
+  - Configure Babel
+  - Configure Parcel config file to disable default babel transpilation
+  - Add Jest config file(npm init jest@latest)
+  - Install jsdom library
+
+81. 
