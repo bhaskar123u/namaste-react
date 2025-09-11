@@ -245,11 +245,11 @@ You don't render HOC component directly. `<HigherOrderFunction />` -> NOT TO BE 
 We can do N number of things in HOC such as changing css styles and all sorts of cross cutting concerns. HOC doesn't mutate old component. HOC returns a new React component (NewComponent) that new component may wrap, replace, or conditionally render WrappedComponent. HOCs generalize conditional rendering (and more) so that logic is reusable and not tied to a single component. If the condition is specific to that component (e.g., “Show veg-only filter if restaurant supports it”), do conditional rendering inside. If the condition is cross-cutting (e.g., “Show skeleton while fetching,” “Protect route if user not logged in”), use a HOC (or hook).
 
 59. The “new component” can:
-1. Wrap the old one in extra elements:
+  a. Wrap the old one in extra elements:
   `<div className="wrapper"> <WrappedComponent {...props} /> </div>`
-2. Decide when to render it:
+  b. Decide when to render it:
   {props.show && `<WrappedComponent {...props} />`}
-3. Pass new or modified props down:
+  c. Pass new or modified props down:
   `<WrappedComponent {...props} theme="dark" />`
 But the inner component’s structure is preserved unless the HOC deliberately changes the props or styling. We can inject className or complete style itself from HOC and it will be applied at Child component level.
 
@@ -309,13 +309,13 @@ WHEN WE CLICK ON ADD BUTTON, IT DISPATCHES AN ACTION, IT CALLS A FUNCTION which 
 
 74. onClick = { addItem } VS onClick = { () => addItem(item) } VS onClick = { addItem(item) }
 
-  1. onClick={addItem}
+  a. onClick={addItem}
   Here you’re passing the function reference. React will call addItem(event) when the click happens, and the click event object will be passed automatically. Correct when your handler doesn’t need extra arguments.
 
-  2. onClick={() => addItem(item)}
+  b. onClick={() => addItem(item)}
   Here you’re passing an arrow function. React calls the arrow on click, and inside that you call addItem(item). Correct when you want to pass custom data (like item) instead of the default click event.
 
-  3. onClick={addItem(item)}
+  c. onClick={addItem(item)}
   ❌ This is wrong in most cases. Why? Because it calls addItem(item) immediately during render, not a callback when the click happens. The result of that function call (likely undefined) is what React assigns to onClick. So the handler runs on render and not on click → bug.
 
   Analogy
