@@ -275,19 +275,17 @@ export default createContext({
     firstName: "Bhaskar"
 });
 ```
---------------------------------------------------------------------------------
 Now we have to read that data as follow, assuming we have imported the MyContext
 ```javascript
 const contextData = useContext(MyContext);
 const firstName = contextData?.firstName;
 ```
-...
 In class based component we don't have hooks so there is a different way to read context data - `<div><UserContext.Consumer> {(data) => console.log(data)} </UserContext.Consumer></div>`, this data is the context data. So there are two ways to read context data.
 
 66. Write new data in context - ContextProvider e.g.,
-...
+```javascript
 export default UserContext = createContext({});
-...
+```
 This will be used as follows
 `<UserContext.Provider value={{some_data}}> any component/HTML tag wrapped here will have this access to some_data </UserContext.Provider>`
 We can use provider for a specific section also, we can create multiple context. So eventually if the component or any HTML structure is not wrapped inside Provider, it will use the default value. Else if it is wrapped in some specific provider, new value will be used.
