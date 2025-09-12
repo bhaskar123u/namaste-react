@@ -8,15 +8,18 @@ import {
   ORDER_ITEM_TEXT,
 } from "../common/Constants";
 import { useNavigate } from "react-router-dom";
+import logo from "url:../resources/logo.png";
+
 
 const Header = () => {
   // variables and state variables
-  const logo = new URL("../resources/food-app-logo.png", import.meta.url).href;
+  // const logo = new URL("../resources/logo.png", import.meta.url).href;
   // extract loginKeyword from context
   const { setModalOn, loggedInUserName, setLoggedInUserName, pendingPath } =
     useContext(MyContext);
   const [welcomeText, setWelcomeText] = useState(null);
   const [btnText, setBtnText] = useState("Login");
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
   // subscribing to the store using a selector, whenever store items modify, the cartItems modify
@@ -46,12 +49,21 @@ const Header = () => {
       navigate("/");
     }
   }, [loggedInUserName]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // JSX
   return (
-    <div className="header">
+    <div className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="logo-container">
         <Link to="/">
-          <img className="logo" src={logo} alt="food-app-logo" />
+          <img src={logo} className="logo" alt="app-logo" />
         </Link>
       </div>
       <div className="welcome-text-header">
@@ -72,7 +84,9 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>
-            <Link to="/cart">Cart {cartItems.length > 0 && `(${cartItems.length})`}</Link>
+            <Link to="/cart">
+              Cart {cartItems.length > 0 && `(${cartItems.length})`}
+            </Link>
           </li>
           <button
             className="login-btn"

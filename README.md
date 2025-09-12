@@ -413,3 +413,15 @@ Summary :
   - Add jsconfig.json
 
 83. We can group test cases, using describe. A single group can test a single thing.
+
+84. If any component is using Redux, we have to pass it inside a `<Provider>`, this will be needed as we are using jsdom to test the component, the component renders inside jsdom but jsdom understands only JSX, React. It has no idea about any context, redux store that we might have passed in original component.
+
+85. Let's say there is a button and we have some action when it is clicked, we want to test that. How can we simulate that using our test case - fireEvent. For e.g., if there is a login button which on clicked changes to logout. We can write test case for it as
+```javascript
+const loginButton = screen.getByRole("button", {name: "Login"});
+fireEvent.click(loginButton);
+const logoutButton = screen.getByRole("button", {name: "Logout"});
+expect(logoutButton).toBeInTheDocument();
+```
+
+86. 

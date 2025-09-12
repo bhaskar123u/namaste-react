@@ -1,5 +1,5 @@
 import { RESTAURANT_MENU_IMAGE_CDN_URL } from "../common/Constants";
-import { starRatingIcon } from "../common/Constants";
+import starRatingIcon from "url:../resources/star.png";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux-slices/CartSlice";
 import MyContext from "../common/MyContext";
